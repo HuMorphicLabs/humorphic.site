@@ -1,0 +1,13 @@
+{
+  "name": "smooth-scroll-robot-animation",
+  "version": "1.0.0",
+  "description": "Ultra-smooth high-performance frame scroll animation",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["canvas", "scroll-animation", "smooth-scroll", "requestAnimationFrame"],
+  "author": "",
+  "license": "ISC"
+}
