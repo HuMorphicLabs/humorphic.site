@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 import {
   Rotate3d,
@@ -39,12 +39,17 @@ export function ModelViewer({
   className = '',
 }: ModelViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [autoRotate, setAutoRotate] = useState(false);
   const [wireframe, setWireframe] = useState(false);
   const [highLighting, setHighLighting] = useState(false);
   const [useFallback2D, setUseFallback2D] = useState(false);
   const [activeModelChoice, setActiveModelChoice] = useState<'procedural' | 'glb'>('procedural');
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Toggle fullscreen
   const toggleFullscreen = () => {
@@ -160,7 +165,14 @@ export function ModelViewer({
 
       {/* Main 3D Canvas or 2D Fallback */}
       <div className="w-full h-full">
-        {useFallback2D ? (
+        {!isMounted ? (
+          <div className="w-full h-full flex flex-col items-center justify-center gap-3 bg-cyber-bg/50">
+            <div className="h-8 w-8 animate-spin rounded-full border-2 border-humorphic-orange border-t-transparent" />
+            <p className="text-xs font-mono text-gray-400 uppercase tracking-widest">
+              INITIALIZING 3D WORKSTATION...
+            </p>
+          </div>
+        ) : useFallback2D ? (
           <FallbackViewer totalFrames={300} />
         ) : (
           <Scene

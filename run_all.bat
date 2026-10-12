@@ -12,6 +12,11 @@ echo Ethernet / LAN Access URLs (from other devices on network):
 echo   Frontend:    http://172.17.6.162:3000/
 echo   Backend API: http://172.17.6.162:8000/api/v1/health/
 echo =========================================================================
+echo.
+echo NOTE: Frontend uses production mode (next start).
+echo       First run will auto-build if needed (2-4 min).
+echo       After that, the site loads instantly.
+echo =========================================================================
 
 start "Humorphic Backend Server" cmd.exe /k "%~dp0run_backend.bat"
 start "Humorphic Frontend Server" cmd.exe /k "%~dp0run_frontend.bat"

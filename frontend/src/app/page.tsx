@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { HeroSection } from '@/components/sections/HeroSection';
 import { ModelViewer } from '@/components/3d/ModelViewer';
+import { HeroSection } from '@/components/sections/HeroSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { AnatomyHUDSection } from '@/components/sections/AnatomyHUDSection';
 import { ChallengesSection } from '@/components/sections/ChallengesSection';

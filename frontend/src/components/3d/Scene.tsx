@@ -2,7 +2,7 @@
 
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ContactShadows, Environment } from '@react-three/drei';
+import { ContactShadows } from '@react-three/drei';
 import { Lights } from './Lights';
 import { Controls } from './Controls';
 import { CameraController } from './Camera';
@@ -57,7 +57,6 @@ export function Scene({
               />
             )}
           </group>
-          <Environment preset="city" />
         </Suspense>
       </Canvas>
     </div>
