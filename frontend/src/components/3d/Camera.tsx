@@ -10,24 +10,28 @@ export interface CameraProps {
 }
 
 export function CameraController({ targetCoords }: CameraProps) {
-  const { camera } = useThree();
-  const currentLookAt = useRef(new THREE.Vector3(0, 0.8, 0));
-  const desiredLookAt = useRef(new THREE.Vector3(0, 0.8, 0));
-  const desiredCamPos = useRef(new THREE.Vector3(0, 1.2, 3.8));
+  const { camera, size } = useThree();
+  const currentLookAt = useRef(new THREE.Vector3(0, 0.85, 0));
+  const desiredLookAt = useRef(new THREE.Vector3(0, 0.85, 0));
+  const desiredCamPos = useRef(new THREE.Vector3(0, 1.1, 3.7));
 
   useFrame((_, delta) => {
+    const isMobile = size.width < 640;
+    const defaultDist = isMobile ? 4.6 : 3.7;
+    const defaultLookY = isMobile ? 0.75 : 0.85;
+
     if (targetCoords) {
       // Focus on selected anatomy subsystem
       desiredLookAt.current.set(targetCoords[0], targetCoords[1], targetCoords[2]);
       desiredCamPos.current.set(
-        targetCoords[0] * 0.5,
-        targetCoords[1] + 0.1,
-        2.2
+        targetCoords[0] * 0.45,
+        targetCoords[1] + (isMobile ? 0.15 : 0.05),
+        isMobile ? 2.8 : 2.2
       );
     } else {
-      // Default view
-      desiredLookAt.current.set(0, 0.8, 0);
-      desiredCamPos.current.set(0, 1.2, 3.8);
+      // Default view centered on the robot
+      desiredLookAt.current.set(0, defaultLookY, 0);
+      desiredCamPos.current.set(0, defaultLookY + 0.25, defaultDist);
     }
 
     // Smooth lerp

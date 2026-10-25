@@ -33,27 +33,27 @@ export function AnatomyHUDSection({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3 reveal-fade-up">
           <div className="inline-flex items-center gap-2 text-xs font-mono text-humorphic-orange tracking-wider">
-            <span className="h-1.5 w-1.5 rounded-full bg-humorphic-orange" />
+            <span className="h-1.5 w-1.5 rounded-full bg-humorphic-orange animate-pulse" />
             02 // ANATOMICAL DECONSTRUCTION // [INTERACTIVE_HUD]
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-wide uppercase">
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-wide uppercase reveal-blur-sharp">
             ROBOT <span className="text-humorphic-orange">ANATOMY</span> &amp; SUBSYSTEMS
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-300">
             Click or select key anatomical component pins to inspect structural specs, actuators, and hardware telemetry. Bidirectionally synchronized with the 3D scene.
           </p>
         </div>
 
         {/* 2-Column HUD Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center reveal-fade-up">
           
           {/* Col 1: Schematic Wireframe with Hotspot Pins (7 Cols) */}
           <div className="lg:col-span-7 relative rounded-2xl border border-cyber-border bg-cyber-card/80 p-6 sm:p-10 backdrop-blur-xl overflow-hidden min-h-[500px] flex items-center justify-center shadow-2xl">
             
             {/* Ambient HUD Scanning Grid line */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(235,59,28,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(235,59,28,0.06)_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(8,98,136,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(8,98,136,0.12)_1px,transparent_1px)] bg-[size:28px_28px] pointer-events-none" />
             
             {/* Center Robot Schematic Vector */}
             <div className="relative w-full max-w-[340px] aspect-[4/6] mx-auto select-none">
@@ -64,21 +64,21 @@ export function AnatomyHUDSection({
                   cx="200"
                   cy="70"
                   r="28"
-                  stroke={selectedPart === 'head' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'head' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth={selectedPart === 'head' ? 3 : 2}
-                  fill="rgba(15,23,42,0.6)"
+                  fill="rgba(9,34,51,0.7)"
                   className="cursor-pointer transition-colors"
                   onClick={() => onSelectPart('head')}
                 />
-                <rect x="182" y="62" width="36" height="12" rx="4" fill="#eb3b1c" opacity="0.8" />
-                <line x1="200" y1="98" x2="200" y2="120" stroke="#f7c873" strokeWidth="4" />
+                <rect x="182" y="62" width="36" height="12" rx="4" fill="#086288" opacity="0.9" />
+                <line x1="200" y1="98" x2="200" y2="120" stroke="#FFEFC4" strokeWidth="4" />
 
                 {/* Torso */}
                 <path
                   d="M150 120 L250 120 L230 250 L170 250 Z"
-                  stroke={selectedPart === 'torso' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'torso' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth={selectedPart === 'torso' ? 3 : 2}
-                  fill="rgba(15,23,42,0.7)"
+                  fill="rgba(9,34,51,0.8)"
                   className="cursor-pointer transition-colors"
                   onClick={() => onSelectPart('torso')}
                 />
@@ -87,9 +87,9 @@ export function AnatomyHUDSection({
                   cx="200"
                   cy="180"
                   r="18"
-                  stroke="#eb3b1c"
+                  stroke="#97D7FF"
                   strokeWidth="2"
-                  fill="rgba(235,59,28,0.3)"
+                  fill="rgba(8,98,136,0.35)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('battery')}
                 />
@@ -97,14 +97,14 @@ export function AnatomyHUDSection({
                 {/* Arms */}
                 <path
                   d="M150 125 L100 160 L85 270"
-                  stroke={selectedPart === 'arms' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'arms' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth="3"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('arms')}
                 />
                 <path
                   d="M250 125 L300 160 L315 270"
-                  stroke={selectedPart === 'arms' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'arms' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth="3"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('arms')}
@@ -115,9 +115,9 @@ export function AnatomyHUDSection({
                   cx="85"
                   cy="280"
                   r="10"
-                  stroke="#f7c873"
+                  stroke="#FFEFC4"
                   strokeWidth="2"
-                  fill="rgba(15,23,42,0.8)"
+                  fill="rgba(9,34,51,0.85)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('hands')}
                 />
@@ -125,9 +125,9 @@ export function AnatomyHUDSection({
                   cx="315"
                   cy="280"
                   r="10"
-                  stroke="#f7c873"
+                  stroke="#FFEFC4"
                   strokeWidth="2"
-                  fill="rgba(15,23,42,0.8)"
+                  fill="rgba(9,34,51,0.85)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('hands')}
                 />
@@ -139,9 +139,9 @@ export function AnatomyHUDSection({
                   width="70"
                   height="35"
                   rx="6"
-                  stroke={selectedPart === 'waist' ? '#eb3b1c' : '#f7c873'}
+                  stroke={selectedPart === 'waist' ? '#97D7FF' : '#FFEFC4'}
                   strokeWidth="2"
-                  fill="rgba(247,200,115,0.15)"
+                  fill="rgba(255,239,196,0.15)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('waist')}
                 />
@@ -149,24 +149,24 @@ export function AnatomyHUDSection({
                 {/* Legs */}
                 <path
                   d="M175 290 L165 420 L160 520"
-                  stroke={selectedPart === 'legs' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'legs' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth="4"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('legs')}
                 />
                 <path
                   d="M225 290 L235 420 L240 520"
-                  stroke={selectedPart === 'legs' ? '#eb3b1c' : 'rgba(255,255,255,0.4)'}
+                  stroke={selectedPart === 'legs' ? '#97D7FF' : 'rgba(255,255,255,0.4)'}
                   strokeWidth="4"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('legs')}
                 />
 
                 {/* Joint Actuators / Motors */}
-                <circle cx="150" cy="125" r="7" fill="#eb3b1c" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
-                <circle cx="250" cy="125" r="7" fill="#eb3b1c" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
-                <circle cx="165" cy="420" r="7" fill="#eb3b1c" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
-                <circle cx="235" cy="420" r="7" fill="#eb3b1c" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
+                <circle cx="150" cy="125" r="7" fill="#086288" stroke="#97D7FF" strokeWidth="1.5" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
+                <circle cx="250" cy="125" r="7" fill="#086288" stroke="#97D7FF" strokeWidth="1.5" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
+                <circle cx="165" cy="420" r="7" fill="#086288" stroke="#97D7FF" strokeWidth="1.5" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
+                <circle cx="235" cy="420" r="7" fill="#086288" stroke="#97D7FF" strokeWidth="1.5" className="cursor-pointer" onClick={() => onSelectPart('motors')} />
 
                 {/* Feet */}
                 <rect
@@ -175,9 +175,9 @@ export function AnatomyHUDSection({
                   width="35"
                   height="15"
                   rx="3"
-                  stroke={selectedPart === 'feet' ? '#eb3b1c' : '#f7c873'}
+                  stroke={selectedPart === 'feet' ? '#97D7FF' : '#FFEFC4'}
                   strokeWidth="2"
-                  fill="rgba(15,23,42,0.9)"
+                  fill="rgba(9,34,51,0.9)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('feet')}
                 />
@@ -187,9 +187,9 @@ export function AnatomyHUDSection({
                   width="35"
                   height="15"
                   rx="3"
-                  stroke={selectedPart === 'feet' ? '#eb3b1c' : '#f7c873'}
+                  stroke={selectedPart === 'feet' ? '#97D7FF' : '#FFEFC4'}
                   strokeWidth="2"
-                  fill="rgba(15,23,42,0.9)"
+                  fill="rgba(9,34,51,0.9)"
                   className="cursor-pointer"
                   onClick={() => onSelectPart('feet')}
                 />
@@ -209,13 +209,13 @@ export function AnatomyHUDSection({
                     }}
                     className={`absolute flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider transition-all duration-300 shadow-lg ${
                       isActive
-                        ? 'bg-humorphic-orange text-white ring-2 ring-humorphic-orange shadow-glow scale-105 z-20'
-                        : 'bg-cyber-card/90 text-slate-300 border border-cyber-border hover:border-humorphic-orange/60 hover:text-white z-10'
+                        ? 'bg-[#086288] text-white ring-2 ring-[#97D7FF] shadow-glow-sky scale-105 z-20'
+                        : 'bg-cyber-card/90 text-slate-300 border border-cyber-border hover:border-[#97D7FF]/60 hover:text-white z-10'
                     }`}
                   >
                     <span
                       className={`h-2 w-2 rounded-full ${
-                        isActive ? 'bg-white animate-ping' : 'bg-humorphic-orange'
+                        isActive ? 'bg-white animate-ping' : 'bg-[#97D7FF]'
                       }`}
                     />
                     <span>{p.label}</span>
@@ -227,10 +227,10 @@ export function AnatomyHUDSection({
 
           {/* Col 2: Dynamic Telemetry Specs Card (5 Cols) */}
           <div className="lg:col-span-5">
-            <Card glow="orange" className="p-8 border-humorphic-orange/40 bg-cyber-card/95 backdrop-blur-2xl">
+            <Card glow="primary" className="p-8 border-[#97D7FF]/30 bg-cyber-card/95 backdrop-blur-2xl">
               
               <div className="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
-                <span className="text-xs font-mono font-bold text-humorphic-orange tracking-wider">
+                <span className="text-xs font-mono font-bold text-[#97D7FF] tracking-wider">
                   {currentSubsystem.code}
                 </span>
                 <span className="text-xs font-mono text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
@@ -255,7 +255,7 @@ export function AnatomyHUDSection({
                   {currentSubsystem.specs.map((sp, idx) => (
                     <div key={idx} className="space-y-0.5">
                       <span className="block text-[11px] font-mono text-slate-400">{sp.key}</span>
-                      <span className="block text-xs font-mono text-humorphic-gold font-semibold">{sp.val}</span>
+                      <span className="block text-xs font-mono text-[#FFEFC4] font-semibold">{sp.val}</span>
                     </div>
                   ))}
                 </div>
@@ -272,7 +272,7 @@ export function AnatomyHUDSection({
                       onClick={() => onSelectPart(key)}
                       className={`text-[10px] font-mono uppercase px-2.5 py-1 rounded transition-colors ${
                         isCur
-                          ? 'bg-humorphic-orange text-white font-bold'
+                          ? 'bg-[#086288] text-white font-bold border border-[#97D7FF]'
                           : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10'
                       }`}
                     >

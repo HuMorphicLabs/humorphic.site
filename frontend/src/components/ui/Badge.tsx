@@ -14,16 +14,16 @@ export const Badge = ({
   ...props
 }: BadgeProps) => {
   const variants = {
-    active: 'bg-emerald-950/60 text-emerald-300 border-emerald-500/40',
-    warning: 'bg-amber-950/60 text-amber-300 border-amber-500/40',
-    info: 'bg-cyan-950/60 text-cyan-300 border-cyan-500/40',
-    neutral: 'bg-slate-900/60 text-slate-300 border-slate-700/60',
+    active: 'bg-[#086288]/40 text-[#97D7FF] border-[#97D7FF]/40 shadow-[0_0_15px_rgba(151,215,255,0.2)]',
+    warning: 'bg-[#FFEFC4]/15 text-[#FFEFC4] border-[#FFEFC4]/40',
+    info: 'bg-[#4D8DBA]/25 text-[#97D7FF] border-[#4D8DBA]/50',
+    neutral: 'bg-[#0D2B3E] text-slate-300 border-[#1C4E6D]',
   };
 
   const dotColors = {
-    active: 'bg-emerald-400',
-    warning: 'bg-amber-400',
-    info: 'bg-cyan-400',
+    active: 'bg-[#97D7FF]',
+    warning: 'bg-[#FFEFC4]',
+    info: 'bg-[#4D8DBA]',
     neutral: 'bg-slate-400',
   };
 

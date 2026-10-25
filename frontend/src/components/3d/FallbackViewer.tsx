@@ -7,11 +7,13 @@ import { Button } from '@/components/ui/Button';
 export interface FallbackViewerProps {
   totalFrames?: number;
   className?: string;
+  showControls?: boolean;
 }
 
 export function FallbackViewer({
   totalFrames = 300,
   className = '',
+  showControls = false,
 }: FallbackViewerProps) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [currentFrame, setCurrentFrame] = useState(1);
@@ -94,32 +96,36 @@ export function FallbackViewer({
     <div className={`relative w-full h-full flex flex-col items-center justify-center bg-cyber-bg overflow-hidden ${className}`}>
       <canvas ref={canvasRef} className="w-full h-full object-contain" />
 
-      {/* Control Overlay */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-cyber-card/85 backdrop-blur-md px-4 py-2 rounded-full border border-cyber-border">
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setIsPlaying(!isPlaying)}
-          aria-label={isPlaying ? 'Pause frame playback' : 'Play frame playback'}
-        >
-          {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-        </Button>
-        <span className="text-xs font-mono text-slate-300 min-w-[70px] text-center">
-          {String(currentFrame).padStart(3, '0')} / {totalFrames}
-        </span>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={() => setCurrentFrame(1)}
-          aria-label="Reset frame animation"
-        >
-          <RotateCcw className="h-4 w-4" />
-        </Button>
-      </div>
+      {/* Control Overlay - Only shown when showControls is explicitly true */}
+      {showControls && (
+        <>
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-cyber-card/85 backdrop-blur-md px-4 py-2 rounded-full border border-cyber-border">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setIsPlaying(!isPlaying)}
+              aria-label={isPlaying ? 'Pause frame playback' : 'Play frame playback'}
+            >
+              {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+            </Button>
+            <span className="text-xs font-mono text-slate-300 min-w-[70px] text-center">
+              {String(currentFrame).padStart(3, '0')} / {totalFrames}
+            </span>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setCurrentFrame(1)}
+              aria-label="Reset frame animation"
+            >
+              <RotateCcw className="h-4 w-4" />
+            </Button>
+          </div>
 
-      <div className="absolute top-4 right-4 bg-amber-950/70 border border-amber-500/40 px-3 py-1 rounded text-[10px] font-mono text-amber-300">
-        2D TELEMETRY CACHE STREAM
-      </div>
+          <div className="absolute top-4 right-4 bg-amber-950/70 border border-amber-500/40 px-3 py-1 rounded text-[10px] font-mono text-amber-300">
+            2D TELEMETRY CACHE STREAM
+          </div>
+        </>
+      )}
     </div>
   );
 }

@@ -16,21 +16,21 @@ export function ChallengesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <div className="text-center max-w-3xl mx-auto mb-16 space-y-3 reveal-fade-up">
           <div className="inline-flex items-center gap-2 text-xs font-mono text-humorphic-orange tracking-wider">
-            <span className="h-1.5 w-1.5 rounded-full bg-humorphic-orange" />
+            <span className="h-1.5 w-1.5 rounded-full bg-humorphic-orange animate-pulse" />
             03 // ENGINEERING CASE STUDY // [RESEARCH_LOG]
           </div>
-          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-wide uppercase">
+          <h2 className="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-wide uppercase reveal-blur-sharp">
             CHALLENGES BEHIND BUILDING A <span className="text-humorphic-orange">HUMANOID</span> ROBOT
           </h2>
-          <p className="text-sm sm:text-base text-slate-400">
+          <p className="text-sm sm:text-base text-slate-300">
             An interactive technical deep-dive into the complex physics, hardware constraints, and algorithmic hurdles of human-centered cybernetics.
           </p>
         </div>
 
         {/* Outer Container */}
-        <div className="rounded-2xl border border-cyber-border bg-cyber-card/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl">
+        <div className="rounded-2xl border border-cyber-border bg-cyber-card/80 p-6 sm:p-10 backdrop-blur-2xl shadow-2xl reveal-fade-up">
           
           {/* Tab Strip */}
           <div className="flex flex-wrap items-center gap-2 pb-6 border-b border-white/10 mb-8 overflow-x-auto">
@@ -42,11 +42,11 @@ export function ChallengesSection() {
                   onClick={() => setActiveTab(ch.id)}
                   className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono tracking-wider transition-all duration-200 select-none whitespace-nowrap ${
                     isActive
-                      ? 'bg-humorphic-orange text-white shadow-glow border border-humorphic-orange font-bold'
+                      ? 'bg-[#086288] text-white shadow-glow-sky border border-[#97D7FF] font-bold'
                       : 'bg-cyber-bg/60 text-slate-400 border border-white/5 hover:text-white hover:bg-white/5'
                   }`}
                 >
-                  <span className={isActive ? 'text-amber-200' : 'text-slate-500'}>
+                  <span className={isActive ? 'text-[#FFEFC4]' : 'text-slate-500'}>
                     0{idx + 1}
                   </span>
                   <span>{ch.title}</span>
@@ -58,7 +58,7 @@ export function ChallengesSection() {
           {/* Active Case Study Content */}
           <div className="space-y-8">
             <div>
-              <span className="text-xs font-mono font-bold text-humorphic-orange tracking-widest block mb-1">
+              <span className="text-xs font-mono font-bold text-[#97D7FF] tracking-widest block mb-1">
                 {activeChallenge.caseId}
               </span>
               <h3 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-wide">

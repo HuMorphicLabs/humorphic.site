@@ -20,18 +20,18 @@ export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
         
         {/* Top Banner Box */}
         <div className="rounded-2xl border border-cyber-border bg-cyber-card/70 p-8 sm:p-12 mb-16 backdrop-blur-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-humorphic-orange/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#086288]/20 rounded-full blur-3xl pointer-events-none" />
           
           <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
             <div className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-humorphic-orange tracking-wider">
-                <span className="h-1.5 w-1.5 rounded-full bg-humorphic-orange" />
+              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#97D7FF] tracking-wider">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#97D7FF] animate-pulse" />
                 HUMORPHIC LAB ARCHITECTURE // [ONLINE]
               </div>
               <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-wide">
                 Pioneering Physical Intelligence.
               </h2>
-              <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
                 Where mathematical models manifest into physical motion. Transforming high-frequency Whole-Body Control equations into sentient cybernetic motion.
               </p>
             </div>
@@ -55,11 +55,11 @@ export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
           {/* Col 1: Brand & Coordinates */}
           <div className="space-y-4 md:col-span-1">
             <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyber-card border border-humorphic-orange/60 shadow-glow">
-                <Bot className="h-5 w-5 text-humorphic-orange" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyber-card border border-[#97D7FF]/60 shadow-glow-sky">
+                <Bot className="h-5 w-5 text-[#97D7FF]" />
               </div>
               <span className="font-display font-extrabold text-base tracking-wider text-white">
-                HUMORPHIC<span className="text-humorphic-orange">LAB</span>
+                HUMORPHIC<span className="text-[#97D7FF]">LAB</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 font-mono leading-relaxed">
@@ -78,11 +78,12 @@ export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
               Robotics Subsystems
             </h3>
             <ul className="space-y-2 text-xs font-mono text-slate-400">
-              <li><a href="/#anatomy" className="hover:text-humorphic-orange transition-colors">Vision Sensor Bay</a></li>
-              <li><a href="/#anatomy" className="hover:text-humorphic-orange transition-colors">Core Computer & IMU</a></li>
-              <li><a href="/#anatomy" className="hover:text-humorphic-orange transition-colors">7-DOF Manipulators</a></li>
-              <li><a href="/#anatomy" className="hover:text-humorphic-orange transition-colors">Bipedal Stride System</a></li>
-              <li><a href="/#anatomy" className="hover:text-humorphic-orange transition-colors">Harmonic BLDC Servos</a></li>
+              <li><a href="/#our-work" className="hover:text-[#97D7FF] transition-colors text-[#FFEFC4] flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#97D7FF]"></span>Our Work Gallery</a></li>
+              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Vision Sensor Bay</a></li>
+              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Core Computer & IMU</a></li>
+              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">7-DOF Manipulators</a></li>
+              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Bipedal Stride System</a></li>
+              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Harmonic BLDC Servos</a></li>
             </ul>
           </div>
 
@@ -92,14 +93,14 @@ export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
               3D Platform & API
             </h3>
             <ul className="space-y-2 text-xs font-mono text-slate-400">
-              <li><Link href="/models" className="hover:text-humorphic-orange transition-colors">3D Model Explorer</Link></li>
-              <li><Link href="/dashboard" className="hover:text-humorphic-orange transition-colors">Telemetry Dashboard</Link></li>
+              <li><Link href="/models" className="hover:text-[#97D7FF] transition-colors">3D Model Explorer</Link></li>
+              <li><Link href="/dashboard" className="hover:text-[#97D7FF] transition-colors">Telemetry Dashboard</Link></li>
               <li>
                 <a
                   href="http://localhost:8000/api/docs/"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-humorphic-orange transition-colors inline-flex items-center gap-1"
+                  className="hover:text-[#97D7FF] transition-colors inline-flex items-center gap-1"
                 >
                   <span>OpenAPI Swagger UI</span>
                   <ExternalLink className="h-3 w-3" />
@@ -110,7 +111,7 @@ export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
                   href="http://localhost:8000/api/redoc/"
                   target="_blank"
                   rel="noreferrer"
-                  className="hover:text-humorphic-orange transition-colors inline-flex items-center gap-1"
+                  className="hover:text-[#97D7FF] transition-colors inline-flex items-center gap-1"
                 >
                   <span>ReDoc Specification</span>
                   <ExternalLink className="h-3 w-3" />

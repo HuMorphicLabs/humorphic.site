@@ -19,6 +19,7 @@ export const Navbar = () => {
     { name: 'ANATOMY', href: '/#anatomy' },
     { name: 'CHALLENGES', href: '/#challenges' },
     { name: 'JOURNEY', href: '/#journey' },
+    { name: 'OUR WORK', href: '/#our-work' },
     { name: 'STATS', href: '/#stats' },
     { name: '3D MODELS', href: '/models' },
     { name: 'DASHBOARD', href: '/dashboard' },
@@ -31,15 +32,15 @@ export const Navbar = () => {
           
           {/* Brand Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-cyber-card border border-humorphic-orange/60 shadow-glow group-hover:scale-105 transition-transform">
-              <Bot className="h-6 w-6 text-humorphic-orange" />
-              <div className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-humorphic-gold animate-ping" />
+            <div className="relative flex h-10 w-10 items-center justify-center rounded-lg bg-cyber-card border border-[#97D7FF]/60 shadow-glow-sky group-hover:scale-105 transition-transform">
+              <Bot className="h-6 w-6 text-[#97D7FF]" />
+              <div className="absolute -top-1 -right-1 h-2 w-2 rounded-full bg-[#FFEFC4] animate-ping" />
             </div>
             <div className="flex flex-col">
               <span className="font-display font-extrabold text-lg tracking-wider text-white flex items-center">
-                HUMORPHIC<span className="text-humorphic-orange ml-0.5">LAB</span>
+                HUMORPHIC<span className="text-[#97D7FF] ml-0.5">LAB</span>
               </span>
-              <span className="text-[9px] font-mono tracking-widest text-slate-400">
+              <span className="text-[9px] font-mono tracking-widest text-[#85A9BE]">
                 CYBERNETICS // v5.04
               </span>
             </div>
@@ -53,8 +54,8 @@ export const Navbar = () => {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className={`text-xs font-mono font-semibold tracking-wider transition-colors duration-200 hover:text-humorphic-orange ${
-                    isActive ? 'text-humorphic-orange' : 'text-slate-300'
+                  className={`text-xs font-mono font-semibold tracking-wider transition-colors duration-200 hover:text-[#97D7FF] ${
+                    isActive ? 'text-[#97D7FF]' : 'text-slate-300'
                   }`}
                 >
                   {link.name}
@@ -73,9 +74,9 @@ export const Navbar = () => {
               <div className="flex items-center gap-3">
                 <Link
                   href="/dashboard"
-                  className="flex items-center gap-2 rounded-md bg-cyber-card border border-cyber-border px-3 py-1.5 text-xs font-mono text-slate-200 hover:border-humorphic-orange transition-colors"
+                  className="flex items-center gap-2 rounded-md bg-cyber-card border border-cyber-border px-3 py-1.5 text-xs font-mono text-slate-200 hover:border-[#97D7FF] transition-colors"
                 >
-                  <User className="h-3.5 w-3.5 text-humorphic-orange" />
+                  <User className="h-3.5 w-3.5 text-[#97D7FF]" />
                   <span>{user?.username}</span>
                   {user?.role === 'admin' && (
                     <span className="text-[10px] bg-red-900/60 text-red-300 px-1 rounded border border-red-500/30">
@@ -138,7 +139,7 @@ export const Navbar = () => {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-md text-sm font-mono text-slate-200 hover:bg-cyber-card hover:text-humorphic-orange transition-colors"
+                className="px-3 py-2 rounded-md text-sm font-mono text-slate-200 hover:bg-cyber-card hover:text-[#97D7FF] transition-colors"
               >
                 {link.name}
               </Link>

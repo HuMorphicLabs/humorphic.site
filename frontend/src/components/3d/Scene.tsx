@@ -15,6 +15,7 @@ export interface SceneProps {
   targetCoords?: [number, number, number] | null;
   lightIntensity?: number;
   className?: string;
+  enableZoom?: boolean;
 }
 
 export function Scene({
@@ -23,6 +24,7 @@ export function Scene({
   targetCoords = null,
   lightIntensity = 1.0,
   className = '',
+  enableZoom = true,
 }: SceneProps) {
   const perf = use3DPerformance();
 
@@ -41,7 +43,7 @@ export function Scene({
       >
         <CameraController targetCoords={targetCoords} />
         <Lights intensity={lightIntensity} enableShadows={perf.enableShadows} />
-        <Controls autoRotate={autoRotate} />
+        <Controls autoRotate={autoRotate} enableZoom={enableZoom} />
 
         <Suspense fallback={<Loading3D />}>
           <group position={[0, -0.2, 0]}>

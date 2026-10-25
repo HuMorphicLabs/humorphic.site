@@ -3,50 +3,114 @@
 @tailwind utilities;
 
 :root {
+  /* Official Humorphic Lab Palette */
+  --primary-color: #086288;       /* Deep Teal */
+  --secondary-color: #4D8DBA;     /* Steel Blue */
+  --accent-color: #97D7FF;        /* Sky Blue */
+  --cream-color: #FFEFC4;         /* Soft Cream Yellow */
+  --text-color: #102A36;          /* Deep Teal Dark Text */
+  --background-color: #05131D;    /* Deep Oceanic Dark Teal Background */
+
   --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-space: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 body {
-  background-color: #05070b;
-  color: #f1f5f9;
+  background-color: #05131D;
+  color: #f1f7fa;
   font-family: var(--font-inter);
   overflow-x: hidden;
-  selection-background-color: #eb3b1c;
-  selection-color: #ffffff;
+  selection-background-color: #086288;
+  selection-color: #FFEFC4;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #05131D;
 }
 
 ::selection {
-  background: #eb3b1c;
-  color: #ffffff;
+  background: #086288;
+  color: #FFEFC4;
 }
 
-/* Custom Cyberpunk Scrollbar */
+/* Custom Futuristic Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #070a10;
+  background: #05131D;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #086288;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #eb3b1c;
+  background: #97D7FF;
 }
 
 /* Scanline / Hologram Micro Effects */
 .scanlines {
   background: linear-gradient(
     rgba(18, 16, 16, 0) 50%,
-    rgba(0, 0, 0, 0.25) 50%
+    rgba(8, 98, 136, 0.25) 50%
   );
   background-size: 100% 4px;
   pointer-events: none;
+}
+
+/* Lightweight Scroll Reveal Animations */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-blur-sharp {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), filter 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, filter, transform;
+}
+
+.reveal-blur-sharp.is-revealed {
+  opacity: 1;
+  filter: blur(0px);
+  transform: translateY(0) scale(1);
+}
+
+.reveal-stagger-parent > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-stagger-parent.is-revealed > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(5) { transition-delay: 0.33s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(6) { transition-delay: 0.40s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(7) { transition-delay: 0.47s; opacity: 1; transform: translateY(0); }
+.reveal-stagger-parent.is-revealed > *:nth-child(8) { transition-delay: 0.54s; opacity: 1; transform: translateY(0); }
+
+/* High-Legibility Backdrop Scrim for Hero Text */
+.hero-text-glow {
+  text-shadow: 0 0 35px rgba(8, 98, 136, 0.45), 0 0 20px rgba(151, 215, 255, 0.3), 0 2px 10px rgba(5, 19, 29, 0.95);
+}
+
+.hero-sub-scrim {
+  background: radial-gradient(circle at center, rgba(5, 19, 29, 0.85) 0%, rgba(5, 19, 29, 0.45) 70%, transparent 100%);
 }

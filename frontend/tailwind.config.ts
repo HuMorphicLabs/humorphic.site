@@ -10,18 +10,29 @@ const config: Config = {
     extend: {
       colors: {
         cyber: {
-          bg: "#05070b",
-          surface: "#0a0e17",
-          card: "#101623",
-          hover: "#151e30",
-          border: "#1e293b",
-          muted: "#64748b",
+          bg: "#05131D",          // Deep Oceanic Dark Teal Background
+          surface: "#092233",     // Elevated Teal Surface
+          card: "#0D2B3E",        // Card Background with Steel Blue undertone
+          hover: "#143D57",       // Hover Surface
+          border: "#1C4E6D",      // Steel Blue / Cyan Border
+          muted: "#85A9BE",       // Muted Text
         },
         humorphic: {
-          orange: "#eb3b1c",
-          gold: "#f7c873",
-          cyan: "#00f0ff",
-          green: "#10b981",
+          primary: "#086288",     // Deep Teal (Primary brand color)
+          teal: "#086288",        // Deep Teal
+          steel: "#4D8DBA",       // Steel Blue (Secondary backgrounds, cards, section highlights)
+          sky: "#97D7FF",         // Sky Blue (Accent, glowing effects, interactive highlights)
+          cream: "#FFEFC4",       // Soft Cream Yellow (Subtle backgrounds, highlighted elements)
+          dark: "#05131D",
+          wine: "#0A3B52",
+          crimson: "#086288",
+          orange: "#086288",      // Map orange to Deep Teal for seamless legacy compatibility
+          red: "#086288",
+          amber: "#4D8DBA",       // Map amber to Steel Blue
+          gold: "#FFEFC4",        // Map gold to Soft Cream Yellow
+          yellow: "#FFEFC4",
+          cyan: "#97D7FF",
+          green: "#10B981",
         },
       },
       fontFamily: {
@@ -30,19 +41,25 @@ const config: Config = {
         mono: ["var(--font-mono)", "monospace"],
       },
       boxShadow: {
-        glow: "0 0 25px -5px rgba(235, 59, 28, 0.4)",
-        "glow-gold": "0 0 25px -5px rgba(247, 200, 115, 0.35)",
-        "glow-cyan": "0 0 25px -5px rgba(0, 240, 255, 0.35)",
-        card: "0 10px 30px -10px rgba(0, 0, 0, 0.7)",
+        glow: "0 0 30px -5px rgba(8, 98, 136, 0.6), 0 0 15px rgba(151, 215, 255, 0.4)",
+        "glow-steel": "0 0 30px -5px rgba(77, 141, 186, 0.5)",
+        "glow-sky": "0 0 30px -5px rgba(151, 215, 255, 0.65)",
+        "glow-cream": "0 0 30px -5px rgba(255, 239, 196, 0.4)",
+        card: "0 10px 30px -10px rgba(4, 19, 29, 0.8)",
       },
       animation: {
         "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
         scan: "scan 3s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
       },
       keyframes: {
         scan: {
           "0%, 100%": { transform: "translateY(0%)" },
           "50%": { transform: "translateY(100%)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
         },
       },
     },

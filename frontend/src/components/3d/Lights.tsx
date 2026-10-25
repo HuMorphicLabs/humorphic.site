@@ -36,29 +36,29 @@ export function Lights({ intensity = 1.0, enableShadows = true }: LightsProps) {
       />
 
       {/* Cybernetic Accent Point Lights */}
-      {/* Orange Core Glow */}
+      {/* Deep Teal Core Glow */}
       <pointLight
         position={[0, 1.2, 0.8]}
-        intensity={0.8 * intensity}
-        color="#eb3b1c"
-        distance={4}
+        intensity={1.1 * intensity}
+        color="#086288"
+        distance={4.5}
         decay={2}
       />
 
-      {/* Gold Back Rim Light */}
+      {/* Soft Cream Back Rim Light */}
       <pointLight
         position={[0, 2, -3]}
-        intensity={1.0 * intensity}
-        color="#f7c873"
-        distance={6}
+        intensity={0.9 * intensity}
+        color="#FFEFC4"
+        distance={6.5}
         decay={2}
       />
 
-      {/* Cyan Ground Reflection */}
+      {/* Sky Blue Ground Reflection */}
       <pointLight
         position={[0, -0.5, 0]}
-        intensity={0.5 * intensity}
-        color="#00f0ff"
+        intensity={0.7 * intensity}
+        color="#97D7FF"
         distance={3}
         decay={2}
       />

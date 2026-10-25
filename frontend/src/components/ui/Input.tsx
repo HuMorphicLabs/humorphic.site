@@ -35,7 +35,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             type={type}
             className={cn(
               'block w-full rounded-md border border-cyber-border bg-cyber-card/90 px-3 py-2 text-sm text-slate-100 placeholder-slate-500 shadow-inner backdrop-blur-md transition-colors',
-              'focus:border-humorphic-orange focus:outline-none focus:ring-1 focus:ring-humorphic-orange',
+              'focus:border-[#97D7FF] focus:outline-none focus:ring-1 focus:ring-[#97D7FF]',
               'disabled:cursor-not-allowed disabled:opacity-50',
               leftIcon && 'pl-10',
               rightIcon && 'pr-10',

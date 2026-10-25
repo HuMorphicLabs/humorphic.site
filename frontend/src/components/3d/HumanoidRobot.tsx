@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
@@ -24,64 +24,105 @@ export function HumanoidRobot({
   const headRef = useRef<THREE.Group>(null);
   const coreRef = useRef<THREE.Mesh>(null);
 
-  // Materials
-  const baseArmorMaterial = new THREE.MeshStandardMaterial({
-    color: '#0f172a',
-    metalness: 0.85,
-    roughness: 0.25,
-    wireframe,
-  });
+  // Memoized Materials
+  const baseArmorMaterial = React.useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: '#0f172a',
+        metalness: 0.85,
+        roughness: 0.25,
+        wireframe,
+      }),
+    [wireframe]
+  );
 
-  const secondaryMetalMaterial = new THREE.MeshStandardMaterial({
-    color: '#334155',
-    metalness: 0.9,
-    roughness: 0.35,
-    wireframe,
-  });
+  const secondaryMetalMaterial = React.useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: '#334155',
+        metalness: 0.9,
+        roughness: 0.35,
+        wireframe,
+      }),
+    [wireframe]
+  );
 
-  const goldJointMaterial = new THREE.MeshStandardMaterial({
-    color: '#f7c873',
-    metalness: 0.95,
-    roughness: 0.2,
-    wireframe,
-  });
+  const goldJointMaterial = React.useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: '#FFEFC4',
+        metalness: 0.9,
+        roughness: 0.25,
+        wireframe,
+      }),
+    [wireframe]
+  );
+
+  const selectedMaterial = React.useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: '#086288',
+        emissive: '#97D7FF',
+        emissiveIntensity: 0.75,
+        metalness: 0.8,
+        roughness: 0.2,
+        wireframe,
+      }),
+    [wireframe]
+  );
+
+  const hoveredMaterial = React.useMemo(
+    () =>
+      new THREE.MeshStandardMaterial({
+        color: '#4D8DBA',
+        emissive: '#4D8DBA',
+        emissiveIntensity: 0.45,
+        metalness: 0.8,
+        roughness: 0.2,
+        wireframe,
+      }),
+    [wireframe]
+  );
 
   const getHighlightMaterial = (partId: string, defaultMat: THREE.Material) => {
-    const isSelected = selectedPart === partId;
-    const isHovered = hoveredPart === partId;
-
-    if (isSelected) {
-      return new THREE.MeshStandardMaterial({
-        color: '#eb3b1c',
-        emissive: '#eb3b1c',
-        emissiveIntensity: 0.6,
-        metalness: 0.8,
-        roughness: 0.2,
-        wireframe,
-      });
-    }
-
-    if (isHovered) {
-      return new THREE.MeshStandardMaterial({
-        color: '#f7c873',
-        emissive: '#f7c873',
-        emissiveIntensity: 0.35,
-        metalness: 0.8,
-        roughness: 0.2,
-        wireframe,
-      });
-    }
-
+    if (selectedPart === partId) return selectedMaterial;
+    if (hoveredPart === partId) return hoveredMaterial;
     return defaultMat;
   };
 
-  // Idle movement & kinematics loop
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
+  // Track window scroll progress for smooth reactive 3D animation
+  const scrollFractionRef = useRef(0);
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll > 0) {
+        scrollFractionRef.current = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    // Subtle breathing / idle motion
+  // Idle movement & kinematics loop with scroll response
+  useFrame((state, delta) => {
+    const t = state.clock.getElapsedTime();
+    const scrollFrac = scrollFractionRef.current;
+
+    // Subtle breathing / idle motion combined with scroll parallax shift
     if (robotGroup.current) {
-      robotGroup.current.position.y = Math.sin(t * 1.5) * 0.015;
+      const targetPosY = Math.sin(t * 1.5) * 0.015 - scrollFrac * 0.45;
+      const targetRotY = scrollFrac * (Math.PI * 0.9);
+      robotGroup.current.position.y = THREE.MathUtils.lerp(
+        robotGroup.current.position.y,
+        targetPosY,
+        Math.min(delta * 4, 1)
+      );
+      robotGroup.current.rotation.y = THREE.MathUtils.lerp(
+        robotGroup.current.rotation.y,
+        targetRotY,
+        Math.min(delta * 3.5, 1)
+      );
     }
 
     // Gentle head scanning

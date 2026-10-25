@@ -244,29 +244,44 @@ export const TECH_STACK: TechItem[] = [
   { name: 'AI / Computer Vision', desc: 'Spatial 3D point-cloud transformers, obstacle segmenters, and visual odometry algorithms.', pill: 'PERCEPTION AI', iconName: 'Eye' },
 ];
 
+export * from './teamData';
+
+import {
+  CLUB_LEADERSHIP,
+  TEAMS_DATA,
+  MEMBERSHIP_DIRECTORY,
+  TOTAL_UNIQUE_MEMBERS,
+} from './teamData';
+
 export const TEAM_MEMBERS: TeamMember[] = [
   {
-    name: 'Dr. Alex Vance',
-    role: 'Founder & Chief Robotics Architect',
-    bio: 'Ex-MIT Leg Lab researcher with 12+ years in biomorphic kinematic balance and humanoid trajectory planning.',
-    initials: 'AV',
+    name: CLUB_LEADERSHIP.hod.name,
+    role: CLUB_LEADERSHIP.hod.roleTitle,
+    bio: CLUB_LEADERSHIP.hod.responsibilities.join(' '),
+    initials: 'RP',
   },
   {
-    name: 'Elena Rostova',
-    role: 'Lead AI & Control Systems Engineer',
-    bio: 'Specialist in Whole-Body Control (WBC), sim-to-real domain randomization, and deep reinforcement learning.',
-    initials: 'ER',
+    name: CLUB_LEADERSHIP.clubLead.name,
+    role: CLUB_LEADERSHIP.clubLead.roleTitle,
+    bio: CLUB_LEADERSHIP.clubLead.responsibilities.join(' '),
+    initials: 'AT',
   },
   {
-    name: 'Marcus Chen',
-    role: 'Mechanical & Hardware Architect',
-    bio: 'Engineered custom harmonic strain wave reducers and carbon fiber structural skeletons for 30+ robotic systems.',
-    initials: 'MC',
+    name: 'Juned Khan',
+    role: 'Team Lead - Stimulation & Virtual Testing',
+    bio: 'Robot simulation, virtual testing, motor movement validation, and troubleshooting technical issues.',
+    initials: 'JK',
   },
   {
-    name: 'Sarah Lin',
-    role: 'Embedded Firmware & Cybernetics Lead',
-    bio: 'RTOS micro-kernel developer specializing in deterministic CAN-FD bus networks and low-latency motor control.',
-    initials: 'SL',
+    name: 'Sachin Vishwakarma',
+    role: 'Team Lead - Artificial Intelligence (AI)',
+    bio: 'AI research, intelligent behavior exploration, software development, and robotics AI integration.',
+    initials: 'SV',
+  },
+  {
+    name: 'Vanshika Vishwakarma',
+    role: 'Team Lead - Web Development',
+    bio: 'Designing and developing the Humorphic Lab website, responsive layouts, animations, and project updates.',
+    initials: 'VV',
   },
 ];
