@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { GradientAsciiIntro } from '@/components/intro/GradientAsciiIntro';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
 import { AnatomyHUDSection } from '@/components/sections/AnatomyHUDSection';
@@ -31,6 +32,9 @@ export default function HomePage() {
   return (
     <div className="relative w-full overflow-hidden bg-cyber-bg">
       
+      {/* OPENING INTRO: FUTURISTIC GRADIENT ASCII EXPERIENCE */}
+      <GradientAsciiIntro />
+
       {/* SECTION 1: HERO (WITH PRIMARY ANIMATED ROBOT IN BACKGROUND BEHIND TEXT) */}
       <HeroSection
         onExploreRobot={() => scrollToSection('features')}
