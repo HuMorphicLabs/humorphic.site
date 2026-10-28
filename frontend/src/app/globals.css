@@ -476,9 +476,13 @@ html.light [role="dialog"] button {
 }
 
 /* 11a. Footer in Dark Mode (#393A3F background with high-contrast bright text & icons) */
-html.dark footer {
-  background-color: #e2e2e2 !important;
-  border-top-color: #322a4e !important;
+html.dark footer,
+.dark footer,
+[data-theme="dark"] footer {
+  background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(8, 98, 136, 0.22), transparent 70%), linear-gradient(180deg, #092233 0%, #05131D 100%) !important;
+  box-shadow: inset 0 1px 0 0 rgba(151, 215, 255, 0.15) !important;
+  color: #ffffff !important;
+  border-top-color: #1C4E6D !important;
 }
 
 html.dark footer h3 {
@@ -503,14 +507,15 @@ html.dark footer .footer-divider {
 }
 
 html.dark footer .footer-social-icon {
-  background-color: rgba(255, 255, 255, 0.08) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  background-color: rgba(13, 43, 62, 0.65) !important;
+  backdrop-filter: blur(8px) !important;
+  border-color: rgba(151, 215, 255, 0.25) !important;
 }
 
 html.dark footer .footer-social-icon:hover {
-  background-color: rgba(255, 255, 255, 0.18) !important;
-  border-color: rgba(255, 255, 255, 0.35) !important;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+  background-color: rgba(20, 61, 87, 0.9) !important;
+  border-color: #97D7FF !important;
+  box-shadow: 0 0 16px rgba(151, 215, 255, 0.35) !important;
 }
 
 html.dark footer .footer-copyright {
