@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,8 +23,6 @@ body {
   color: #f1f7fa;
   font-family: var(--font-inter);
   overflow-x: hidden;
-  selection-background-color: #086288;
-  selection-color: #FFEFC4;
 }
 
 html {
@@ -114,3 +114,486 @@ html {
 .hero-sub-scrim {
   background: radial-gradient(circle at center, rgba(5, 19, 29, 0.85) 0%, rgba(5, 19, 29, 0.45) 70%, transparent 100%);
 }
+
+/* =========================================================================
+   TEAM MEMBERS TAB - SCOPED ROBOTICS DARK THEME (Space Grotesk + Inter)
+   Strictly scoped to .team-members-tab-theme inside #stats
+   Colors:
+   - Deep Navy: #03071E (Dominant primary background)
+   - Dark Wine: #6A040F (Subtle depth & gradients)
+   - Red-Orange: #DC2F02 (Accents & active cues)
+   - Amber: #F4AC06 (Highlights & active states)
+   - Golden Yellow: #FFBA08 (Headings & visual accents)
+   ========================================================================= */
+
+.team-members-tab-theme {
+  --tm-navy: #03071E;
+  --tm-wine: #6A040F;
+  --tm-orange: #DC2F02;
+  --tm-amber: #F4AC06;
+  --tm-gold: #FFBA08;
+  font-family: var(--font-inter);
+}
+
+.team-members-tab-theme .tm-heading,
+.team-members-tab-theme .tm-font-space {
+  font-family: var(--font-space);
+}
+
+.team-members-tab-theme .tm-font-inter {
+  font-family: var(--font-inter);
+}
+
+.tm-card-glow {
+  box-shadow: 0 4px 24px -2px rgba(3, 7, 30, 0.9), 0 0 15px -3px rgba(244, 172, 6, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tm-card-glow:hover {
+  box-shadow: 0 8px 32px -4px rgba(3, 7, 30, 0.95), 0 0 25px -2px rgba(244, 172, 6, 0.22);
+}
+
+.tm-card-lead-glow {
+  box-shadow: 0 6px 28px -2px rgba(3, 7, 30, 0.95), 0 0 20px -2px rgba(255, 186, 8, 0.15);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.tm-card-lead-glow:hover {
+  box-shadow: 0 10px 36px -4px rgba(3, 7, 30, 0.95), 0 0 30px 0px rgba(255, 186, 8, 0.3);
+}
+
+/* =========================================================================
+   THEME TRANSITIONS
+   Smooth transitions across background-color, border-color, color, box-shadow
+   ========================================================================= */
+html.dark,
+html.light,
+html.dark body,
+html.light body,
+header,
+nav,
+section,
+footer,
+main,
+button,
+input,
+div[class*="rounded"] {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 280ms;
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* =========================================================================
+   LIGHT MODE THEME ENGINE
+   Exact 5-color reference palette:
+   - Pale Yellow:        #FFF4B8
+   - Warm Pastel Yellow: #FFE4A3
+   - Light Sky Blue:     #C7E5FF
+   - Soft Blue:          #A7CFFF
+   - Warm Off-White:     #FDFAF4
+   - High Contrast Text: #05131D / #1E3A5F / #0D2B3E
+   ========================================================================= */
+
+/* 1. Base Document & Body */
+html.light,
+html.light body {
+  background-color: #FDFAF4 !important;
+  color: #05131D !important;
+}
+
+html.light ::selection {
+  background: #A7CFFF !important;
+  color: #05131D !important;
+}
+
+html.light ::-webkit-scrollbar-track {
+  background: #FDFAF4 !important;
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: #A7CFFF !important;
+  border-radius: 4px;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #85B8FF !important;
+}
+
+/* 2. Global Cyber Classes mapped to Light Mode Palette */
+html.light .bg-cyber-bg,
+html.light [class*="bg-cyber-bg"] {
+  background-color: #FDFAF4 !important;
+}
+
+html.light .bg-cyber-card,
+html.light [class*="bg-cyber-card"] {
+  background-color: rgba(199, 229, 255, 0.72) !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light .bg-cyber-surface,
+html.light [class*="bg-cyber-surface"] {
+  background-color: rgba(255, 244, 184, 0.7) !important;
+  border-color: rgba(167, 207, 255, 0.6) !important;
+}
+
+html.light .border-cyber-border,
+html.light [class*="border-cyber-border"] {
+  border-color: #A7CFFF !important;
+}
+
+/* 3. Global Typography in Light Mode */
+html.light h1,
+html.light h2,
+html.light h3,
+html.light h4,
+html.light h5,
+html.light h6 {
+  color: #05131D !important;
+}
+
+html.light p,
+html.light .text-slate-300,
+html.light .text-slate-400 {
+  color: #1E3A5F !important;
+}
+
+html.light .text-white {
+  color: #05131D !important;
+}
+
+html.light .text-slate-200 {
+  color: #05131D !important;
+}
+
+html.light .text-slate-500 {
+  color: #475569 !important;
+}
+
+html.light .text-humorphic-orange,
+html.light .text-\[\#97D7FF\] {
+  color: #086288 !important;
+}
+
+html.light .text-humorphic-gold,
+html.light .text-\[\#FFEFC4\] {
+  color: #B45309 !important;
+}
+
+/* 4. Navbar in Light Mode */
+html.light header {
+  background-color: rgba(253, 250, 244, 0.94) !important;
+  border-bottom-color: rgba(167, 207, 255, 0.8) !important;
+  box-shadow: 0 4px 20px -2px rgba(167, 207, 255, 0.35) !important;
+}
+
+html.light header .font-display {
+  color: #05131D !important;
+}
+
+html.light header .text-\[\#85A9BE\] {
+  color: #1E3A5F !important;
+}
+
+html.light header nav a {
+  color: #1E3A5F !important;
+}
+
+html.light header nav a:hover,
+html.light header nav a[class*="text-\[\#97D7FF\]"] {
+  color: #086288 !important;
+}
+
+html.light header .rounded-lg.bg-cyber-card {
+  background-color: #C7E5FF !important;
+  border-color: #A7CFFF !important;
+}
+
+/* 5. Hero Section in Light Mode */
+html.light section:first-of-type {
+  background: linear-gradient(180deg, #FFF4B8 0%, #FDFAF4 100%) !important;
+}
+
+html.light .hero-text-glow {
+  text-shadow: none !important;
+}
+
+html.light .hero-sub-scrim {
+  background: rgba(253, 250, 244, 0.88) !important;
+  border-color: rgba(167, 207, 255, 0.6) !important;
+  box-shadow: 0 4px 20px -2px rgba(167, 207, 255, 0.25) !important;
+}
+
+html.light .hero-sub-scrim p {
+  color: #05131D !important;
+  text-shadow: none !important;
+}
+
+html.light .hero-robot-chamber {
+  background: radial-gradient(ellipse 65% 72% at 50% 50%, rgba(5, 19, 29, 0.88) 0%, rgba(5, 19, 29, 0.62) 48%, rgba(199, 229, 255, 0.25) 75%, transparent 100%);
+  border-radius: 9999px;
+  filter: drop-shadow(0 0 35px rgba(167, 207, 255, 0.45));
+}
+
+/* 6. Section Specific Alternating Backgrounds */
+html.light #features {
+  background-color: #FDFAF4 !important;
+}
+
+html.light #anatomy {
+  background: linear-gradient(180deg, #FDFAF4 0%, #FFF4B8 40%, #FDFAF4 100%) !important;
+}
+
+html.light #challenges {
+  background-color: #FDFAF4 !important;
+}
+
+html.light #challenges > div > div.rounded-2xl {
+  background-color: #FFE4A3 !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light #journey {
+  background: linear-gradient(180deg, #FDFAF4 0%, #FFF4B8 100%) !important;
+}
+
+html.light #our-work {
+  background-color: #FDFAF4 !important;
+}
+
+html.light #stats {
+  background: linear-gradient(180deg, #FFE4A3 0%, #FDFAF4 100%) !important;
+}
+
+html.light #tech-stack {
+  background-color: #FFE4A3 !important;
+}
+
+/* 7. Buttons in Light Mode */
+html.light button.bg-gradient-to-r,
+html.light button[class*="from-\[#086288\]"] {
+  background: linear-gradient(135deg, #A7CFFF 0%, #C7E5FF 100%) !important;
+  color: #05131D !important;
+  border-color: #85B8FF !important;
+  box-shadow: 0 4px 15px rgba(167, 207, 255, 0.5) !important;
+  font-weight: 700 !important;
+}
+
+html.light button[class*="bg-cyber-card\/90"] {
+  background-color: #FFE4A3 !important;
+  color: #05131D !important;
+  border-color: #F4AC06 !important;
+  font-weight: 700 !important;
+}
+
+html.light button[class*="border-cyber-border"] {
+  background-color: rgba(253, 250, 244, 0.85) !important;
+  border-color: #A7CFFF !important;
+  color: #05131D !important;
+}
+
+/* 8. Badges & Glows in Light Mode */
+html.light .shadow-glow,
+html.light .shadow-glow-sky,
+html.light .shadow-glow-steel,
+html.light .shadow-glow-cream {
+  box-shadow: 0 0 20px -3px rgba(167, 207, 255, 0.55) !important;
+}
+
+html.light [class*="rounded-full"][class*="border"] {
+  border-color: #A7CFFF !important;
+}
+
+/* 9. Team Members Tab Scoped Light Mode */
+html.light .team-members-tab-theme {
+  --tm-navy: #FDFAF4;
+  --tm-wine: #FFE4A3;
+  --tm-orange: #086288;
+  --tm-amber: #B45309;
+  --tm-gold: #05131D;
+}
+
+html.light .team-members-tab-theme .bg-gradient-to-b {
+  background: #C7E5FF !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light .team-members-tab-theme .tm-card-glow,
+html.light .team-members-tab-theme .tm-card-lead-glow {
+  background-color: #C7E5FF !important;
+  border-color: #A7CFFF !important;
+  box-shadow: 0 4px 20px -2px rgba(167, 207, 255, 0.4) !important;
+}
+
+html.light .team-members-tab-theme .tm-card-glow:hover,
+html.light .team-members-tab-theme .tm-card-lead-glow:hover {
+  box-shadow: 0 8px 28px -4px rgba(167, 207, 255, 0.6) !important;
+  border-color: #85B8FF !important;
+}
+
+html.light .team-members-tab-theme h4,
+html.light .team-members-tab-theme h3 {
+  color: #05131D !important;
+}
+
+html.light .team-members-tab-theme .text-slate-300,
+html.light .team-members-tab-theme .text-slate-400 {
+  color: #1E3A5F !important;
+}
+
+/* 10. Modals in Light Mode */
+html.light [role="dialog"] {
+  background-color: #FDFAF4 !important;
+  border-color: #A7CFFF !important;
+  color: #05131D !important;
+  box-shadow: 0 25px 60px -15px rgba(5, 19, 29, 0.25) !important;
+}
+
+html.light [role="dialog"] h2,
+html.light [role="dialog"] h3,
+html.light [role="dialog"] h4,
+html.light [role="dialog"] h5 {
+  color: #05131D !important;
+}
+
+html.light [role="dialog"] p,
+html.light [role="dialog"] span {
+  color: #1E3A5F !important;
+}
+
+html.light [role="dialog"] [class*="bg-cyber-bg"],
+html.light [role="dialog"] [class*="bg-cyber-card"] {
+  background-color: #C7E5FF !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light [role="dialog"] button {
+  color: #05131D !important;
+}
+
+/* 11a. Footer in Dark Mode (#393A3F background with high-contrast bright text & icons) */
+html.dark footer {
+  background-color: #e2e2e2 !important;
+  border-top-color: #322a4e !important;
+}
+
+html.dark footer h3 {
+  color: #FFFFFF !important;
+}
+
+html.dark footer .footer-heading-dot {
+  background-color: #97D7FF !important;
+  box-shadow: 0 0 8px rgba(151, 215, 255, 0.8) !important;
+}
+
+html.dark footer a.footer-nav-link {
+  color: #E2E8F0 !important;
+}
+
+html.dark footer a.footer-nav-link:hover {
+  color: #97D7FF !important;
+}
+
+html.dark footer .footer-divider {
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.dark footer .footer-social-icon {
+  background-color: rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+html.dark footer .footer-social-icon:hover {
+  background-color: rgba(255, 255, 255, 0.18) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25) !important;
+}
+
+html.dark footer .footer-copyright {
+  color: #CBD5E1 !important;
+}
+
+/* 11b. Footer in Light Mode (Preserved exactly as is) */
+html.light footer {
+  background-color: #FDFAF4 !important;
+  border-top-color: #A7CFFF !important;
+}
+
+html.light footer h3 {
+  color: #05131D !important;
+}
+
+html.light footer .footer-heading-dot {
+  background-color: #086288 !important;
+  box-shadow: none !important;
+}
+
+html.light footer a.footer-nav-link {
+  color: #1E3A5F !important;
+}
+
+html.light footer a.footer-nav-link:hover {
+  color: #086288 !important;
+}
+
+html.light footer .footer-divider {
+  border-color: #A7CFFF !important;
+}
+
+html.light footer .footer-social-icon {
+  background-color: rgba(255, 255, 255, 0.85) !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light footer .footer-social-icon:hover {
+  background-color: #FFFFFF !important;
+  border-color: #086288 !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1) !important;
+}
+
+html.light footer .footer-copyright {
+  color: #64748B !important;
+}
+
+/* 12. App Pages (Models, Dashboard, Login, Register) */
+html.light input {
+  background-color: #FDFAF4 !important;
+  border-color: #A7CFFF !important;
+  color: #05131D !important;
+}
+
+html.light input::placeholder {
+  color: #64748B !important;
+}
+
+/* 13. About Us Page in Light Mode */
+html.light .about-us-page {
+  background-color: #FDFAF4 !important;
+}
+
+html.light .about-us-card {
+  background-color: #C7E5FF !important;
+  border-color: #A7CFFF !important;
+  box-shadow: 0 10px 30px -10px rgba(167, 207, 255, 0.5) !important;
+}
+
+html.light .about-us-feature-box {
+  background-color: #FDFAF4 !important;
+  border-color: #A7CFFF !important;
+}
+
+html.light .about-us-tagline {
+  background: linear-gradient(135deg, #FFE4A3 0%, #FFF4B8 100%) !important;
+  border-color: #FFE4A3 !important;
+  box-shadow: 0 4px 20px -2px rgba(255, 228, 163, 0.6) !important;
+}
+
+html.light .about-us-tagline blockquote {
+  color: #05131D !important;
+}
+
+html.light .about-us-tagline div {
+  color: #086288 !important;
+}
+
+

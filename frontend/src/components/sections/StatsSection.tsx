@@ -133,15 +133,15 @@ export function StatsSection() {
             </button>
             <button
               onClick={() => setActiveMainTab('team')}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-mono uppercase tracking-wider transition-all duration-200 ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-xs font-display uppercase tracking-wider transition-all duration-200 relative ${
                 activeMainTab === 'team'
-                  ? 'bg-humorphic-orange text-white shadow-glow'
-                  : 'text-slate-400 hover:text-white'
+                  ? 'bg-[#03071E] text-[#FFBA08] border border-[#FFBA08]/50 shadow-[0_0_20px_rgba(244,172,6,0.3)] font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[2px] after:bg-gradient-to-r after:from-[#F4AC06] after:via-[#FFBA08] after:to-[#F4AC06] after:rounded-full'
+                  : 'text-slate-400 hover:text-white hover:border-[#F4AC06]/30'
               }`}
             >
-              <Users className="h-4 w-4" />
-              <span>TEAM MEMBERS ({TOTAL_UNIQUE_MEMBERS})</span>
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse ml-0.5" />
+              <Users className={`h-4 w-4 ${activeMainTab === 'team' ? 'text-[#F4AC06]' : ''}`} />
+              <span className="font-display">TEAM MEMBERS ({TOTAL_UNIQUE_MEMBERS})</span>
+              <span className={`h-1.5 w-1.5 rounded-full ${activeMainTab === 'team' ? 'bg-[#F4AC06]' : 'bg-emerald-400'} animate-pulse ml-0.5`} />
             </button>
           </div>
         </div>
@@ -236,41 +236,50 @@ export function StatsSection() {
 
         {/* TAB 2: TEAM MEMBERS TAB (LEADERSHIP, TEAMS, DIRECTORY) */}
         {activeMainTab === 'team' && (
-          <div className="space-y-10 animate-fade-in">
-            
+          <div className="team-members-tab-theme space-y-10 animate-fade-in relative">
+            {/* Ambient subtle robotics glow */}
+            <div className="absolute -top-12 left-1/2 -translate-x-1/2 w-[700px] h-[280px] bg-gradient-to-b from-[#6A040F]/15 via-[#F4AC06]/10 to-transparent rounded-full blur-[120px] pointer-events-none -z-10" />
+
             {/* 1. CLUB LEADERSHIP BLOCK */}
             <div>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center gap-2">
-                  <ShieldCheck className="h-4 w-4 text-humorphic-orange" />
-                  <h3 className="text-xs font-mono uppercase tracking-widest text-humorphic-orange font-bold">
+                  <ShieldCheck className="h-4 w-4 text-[#F4AC06]" />
+                  <h3 className="text-xs font-display uppercase tracking-widest text-[#FFBA08] font-bold">
                     01 // CLUB LEADERSHIP &amp; SUPERVISION
                   </h3>
                 </div>
-                <Badge variant="active">VERIFIED LEADERSHIP</Badge>
+                <span className="px-3 py-1 rounded-full text-[11px] font-sans font-medium tracking-wide bg-[#FFBA08]/10 text-[#FFBA08] border border-[#FFBA08]/30 flex items-center gap-1.5 shadow-[0_0_12px_rgba(255,186,8,0.15)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#FFBA08] animate-pulse" />
+                  VERIFIED LEADERSHIP
+                </span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* HoD Card */}
-                <Card glow="gold" className="p-6 bg-cyber-card/90 border-humorphic-gold/40">
+                <div className="relative rounded-2xl border border-[#F4AC06]/25 bg-gradient-to-b from-[#03071E] via-[#040924] to-[#03071E] p-6 backdrop-blur-xl tm-card-lead-glow hover:border-[#FFBA08]/60 group transition-all duration-300">
+                  {/* Subtle robotics corner accents */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#FFBA08]/40 rounded-tl-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#FFBA08]/40 rounded-br-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+
                   <div className="flex items-start gap-4">
-                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-[#086288] to-[#FFEFC4] flex items-center justify-center font-display font-black text-[#05131D] text-lg shadow-glow-cream flex-shrink-0">
+                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-[#6A040F] via-[#3d0309] to-[#03071E] border border-[#FFBA08]/50 flex items-center justify-center font-display font-black text-[#FFBA08] text-xl shadow-[0_0_18px_rgba(255,186,8,0.25)] flex-shrink-0 group-hover:scale-105 transition-transform">
                       RP
                     </div>
                     <div className="space-y-1.5 flex-1">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#FFEFC4]/10 border border-[#FFEFC4]/40 text-[10px] font-mono text-[#FFEFC4] uppercase tracking-wider font-semibold">
-                        <Sparkles className="h-3 w-3" />
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#FFBA08]/10 border border-[#FFBA08]/30 text-[10px] font-sans text-[#FFBA08] uppercase tracking-wider font-semibold">
+                        <Sparkles className="h-3 w-3 text-[#F4AC06]" />
                         {CLUB_LEADERSHIP.hod.roleTitle}
                       </div>
-                      <h4 className="text-xl font-display font-bold text-white">
+                      <h4 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight group-hover:text-[#FFBA08] transition-colors">
                         {CLUB_LEADERSHIP.hod.name}
                       </h4>
                       <div className="text-xs text-slate-300 font-sans pt-1">
-                        <strong className="text-slate-200">Responsibilities:</strong>
-                        <ul className="mt-1 space-y-1">
+                        <strong className="text-slate-200 font-semibold">Responsibilities:</strong>
+                        <ul className="mt-1.5 space-y-1.5">
                           {CLUB_LEADERSHIP.hod.responsibilities.map((r, i) => (
-                            <li key={i} className="flex items-start gap-2 text-slate-400 font-mono text-[11px]">
-                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                            <li key={i} className="flex items-start gap-2 text-slate-300 font-sans text-xs leading-relaxed">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-[#F4AC06] flex-shrink-0 mt-0.5" />
                               <span>{r}</span>
                             </li>
                           ))}
@@ -278,28 +287,32 @@ export function StatsSection() {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </div>
 
                 {/* Club Lead Card */}
-                <Card glow="orange" className="p-6 bg-cyber-card/90 border-[#97D7FF]/40">
+                <div className="relative rounded-2xl border border-[#F4AC06]/25 bg-gradient-to-b from-[#03071E] via-[#040924] to-[#03071E] p-6 backdrop-blur-xl tm-card-lead-glow hover:border-[#FFBA08]/60 group transition-all duration-300">
+                  {/* Subtle robotics corner accents */}
+                  <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#F4AC06]/40 rounded-tl-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+                  <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#F4AC06]/40 rounded-br-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+
                   <div className="flex items-start gap-4">
-                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-[#086288] to-[#97D7FF] flex items-center justify-center font-display font-black text-[#05131D] text-lg shadow-glow-sky flex-shrink-0">
+                    <div className="h-14 w-14 rounded-xl bg-gradient-to-br from-[#6A040F] via-[#3d0309] to-[#03071E] border border-[#F4AC06]/50 flex items-center justify-center font-display font-black text-[#FFBA08] text-xl shadow-[0_0_18px_rgba(244,172,6,0.25)] flex-shrink-0 group-hover:scale-105 transition-transform">
                       AT
                     </div>
                     <div className="space-y-1.5 flex-1">
-                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded bg-[#086288]/20 border border-[#97D7FF]/50 text-[10px] font-mono text-[#97D7FF] uppercase tracking-wider font-semibold">
-                        <UserCheck className="h-3 w-3" />
+                      <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#F4AC06]/10 border border-[#F4AC06]/30 text-[10px] font-sans text-[#FFBA08] uppercase tracking-wider font-semibold">
+                        <UserCheck className="h-3 w-3 text-[#F4AC06]" />
                         {CLUB_LEADERSHIP.clubLead.roleTitle}
                       </div>
-                      <h4 className="text-xl font-display font-bold text-white">
+                      <h4 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight group-hover:text-[#FFBA08] transition-colors">
                         {CLUB_LEADERSHIP.clubLead.name}
                       </h4>
                       <div className="text-xs text-slate-300 font-sans pt-1">
-                        <strong className="text-slate-200">Responsibilities:</strong>
-                        <ul className="mt-1 space-y-1">
+                        <strong className="text-slate-200 font-semibold">Responsibilities:</strong>
+                        <ul className="mt-1.5 space-y-1.5">
                           {CLUB_LEADERSHIP.clubLead.responsibilities.map((r, i) => (
-                            <li key={i} className="flex items-start gap-2 text-slate-400 font-mono text-[11px]">
-                              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                            <li key={i} className="flex items-start gap-2 text-slate-300 font-sans text-xs leading-relaxed">
+                              <CheckCircle2 className="h-3.5 w-3.5 text-[#F4AC06] flex-shrink-0 mt-0.5" />
                               <span>{r}</span>
                             </li>
                           ))}
@@ -307,41 +320,50 @@ export function StatsSection() {
                       </div>
                     </div>
                   </div>
-                </Card>
+                </div>
               </div>
             </div>
 
             {/* 2. SUB-VIEW SWITCHER: DIRECTORY VS TEAMS */}
-            <div className="border-t border-cyber-border/80 pt-8 space-y-6">
+            <div className="border-t border-white/10 pt-8 space-y-6">
               <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="space-y-1">
-                  <div className="text-xs font-mono text-slate-400 uppercase tracking-widest">
+                  <div className="text-xs font-display text-[#F4AC06] uppercase tracking-widest font-semibold flex items-center gap-1.5">
+                    <span className="h-1 w-1 rounded-full bg-[#F4AC06]" />
                     02 // MEMBERSHIP &amp; STRUCTURE
                   </div>
-                  <h3 className="text-xl font-display font-bold text-white">
-                    {teamSubView === 'directory'
-                      ? `COMPLETE MEMBERSHIP DIRECTORY (${TOTAL_UNIQUE_MEMBERS} UNIQUE MEMBERS)`
-                      : 'FUNCTIONAL TEAMS & RESPONSIBILITIES (6 TEAMS)'}
+                  <h3 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
+                    {teamSubView === 'directory' ? (
+                      <>
+                        COMPLETE MEMBERSHIP DIRECTORY (
+                        <span className="text-[#FFBA08]">{TOTAL_UNIQUE_MEMBERS} UNIQUE MEMBERS</span>)
+                      </>
+                    ) : (
+                      <>
+                        FUNCTIONAL TEAMS &amp; RESPONSIBILITIES (
+                        <span className="text-[#FFBA08]">6 TEAMS</span>)
+                      </>
+                    )}
                   </h3>
                 </div>
 
-                <div className="flex items-center gap-2 p-1 rounded-lg bg-cyber-card border border-cyber-border">
+                <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#03071E] border border-white/10 shadow-inner">
                   <button
                     onClick={() => setTeamSubView('directory')}
-                    className={`px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-display tracking-wider uppercase transition-all duration-200 relative ${
                       teamSubView === 'directory'
-                        ? 'bg-humorphic-orange/20 border border-humorphic-orange text-white'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-gradient-to-r from-[#6A040F]/40 to-[#03071E] border border-[#FFBA08]/60 text-[#FFBA08] shadow-[0_0_15px_rgba(244,172,6,0.25)] font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[1.5px] after:bg-[#FFBA08]'
+                        : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     ALL 18 MEMBERS
                   </button>
                   <button
                     onClick={() => setTeamSubView('teams')}
-                    className={`px-3 py-1.5 rounded-md text-xs font-mono uppercase tracking-wider transition-all ${
+                    className={`px-3.5 py-1.5 rounded-lg text-xs font-display tracking-wider uppercase transition-all duration-200 relative ${
                       teamSubView === 'teams'
-                        ? 'bg-humorphic-orange/20 border border-humorphic-orange text-white'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-gradient-to-r from-[#6A040F]/40 to-[#03071E] border border-[#FFBA08]/60 text-[#FFBA08] shadow-[0_0_15px_rgba(244,172,6,0.25)] font-semibold after:absolute after:bottom-0 after:left-3 after:right-3 after:h-[1.5px] after:bg-[#FFBA08]'
+                        : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
                     TEAMS &amp; ROLES (6)
@@ -356,30 +378,33 @@ export function StatsSection() {
                   <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
                     {/* Category Filter Pills */}
                     <div className="flex flex-wrap items-center gap-1.5">
-                      {directoryFilters.map((flt) => (
-                        <button
-                          key={flt.id}
-                          onClick={() => setDirectoryFilter(flt.id)}
-                          className={`px-3 py-1 rounded text-[11px] font-mono uppercase tracking-wider transition-all border ${
-                            directoryFilter === flt.id
-                              ? 'bg-humorphic-orange/20 border-humorphic-orange text-white shadow-glow'
-                              : 'bg-cyber-card/60 border-cyber-border text-slate-400 hover:text-white hover:border-slate-500'
-                          }`}
-                        >
-                          {flt.label}
-                        </button>
-                      ))}
+                      {directoryFilters.map((flt) => {
+                        const isActive = directoryFilter === flt.id;
+                        return (
+                          <button
+                            key={flt.id}
+                            onClick={() => setDirectoryFilter(flt.id)}
+                            className={`px-3 py-1 rounded-lg text-xs font-sans tracking-wide transition-all border ${
+                              isActive
+                                ? 'bg-gradient-to-r from-[#6A040F]/40 to-[#03071E] border-[#FFBA08] text-[#FFBA08] shadow-[0_0_12px_rgba(244,172,6,0.25)] font-semibold'
+                                : 'bg-[#03071E]/80 border-white/10 text-slate-400 hover:text-white hover:border-[#F4AC06]/40'
+                            }`}
+                          >
+                            {flt.label}
+                          </button>
+                        );
+                      })}
                     </div>
 
                     {/* Search Input */}
                     <div className="relative min-w-[240px]">
-                      <Search className="h-4 w-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                      <Search className="h-4 w-4 text-[#F4AC06] absolute left-3 top-1/2 -translate-y-1/2" />
                       <input
                         type="text"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         placeholder="Search member or team..."
-                        className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-cyber-card/80 border border-cyber-border text-xs font-mono text-white placeholder-slate-500 focus:outline-none focus:border-humorphic-orange"
+                        className="w-full pl-9 pr-3 py-1.5 rounded-lg bg-[#03071E] border border-white/15 text-xs font-sans text-white placeholder-slate-500 focus:outline-none focus:border-[#F4AC06] focus:ring-1 focus:ring-[#F4AC06]/40 transition-all"
                       />
                     </div>
                   </div>
@@ -387,30 +412,33 @@ export function StatsSection() {
                   {/* 18 Members Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {filteredMembers.map((member) => (
-                      <Card
+                      <div
                         key={member.id}
-                        glow={member.isClubLead ? 'gold' : member.isTeamLead ? 'orange' : 'none'}
-                        className="p-4 flex flex-col justify-between border-cyber-border/80 bg-cyber-card/70 hover:border-slate-500 transition-colors"
+                        className="relative rounded-xl border border-[#F4AC06]/20 bg-gradient-to-b from-[#03071E] via-[#04081f] to-[#03071E] p-5 flex flex-col justify-between tm-card-glow hover:border-[#FFBA08]/60 hover:-translate-y-1 transition-all duration-300 group"
                       >
+                        {/* Corner robotics accent */}
+                        <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#FFBA08]/30 rounded-tl-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+                        <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#FFBA08]/30 rounded-br-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+
                         <div>
                           <div className="flex items-center justify-between gap-3 mb-3">
                             <div className="flex items-center gap-3">
                               <div
-                                className={`h-10 w-10 rounded-lg flex items-center justify-center font-display font-black text-xs shadow-md ${
+                                className={`h-11 w-11 rounded-lg flex items-center justify-center font-display font-black text-sm shadow-md transition-transform group-hover:scale-105 flex-shrink-0 ${
                                   member.isClubLead
-                                    ? 'bg-gradient-to-br from-[#086288] to-[#FFEFC4] text-[#05131D]'
+                                    ? 'bg-gradient-to-br from-[#6A040F] via-[#3a0309] to-[#03071E] border border-[#FFBA08] text-[#FFBA08] shadow-[0_0_12px_rgba(255,186,8,0.25)]'
                                     : member.isTeamLead
-                                    ? 'bg-gradient-to-br from-[#086288] to-[#97D7FF] text-[#05131D]'
-                                    : 'bg-cyber-surface border border-cyber-border text-slate-200'
+                                    ? 'bg-gradient-to-br from-[#6A040F]/60 via-[#26050b] to-[#03071E] border border-[#F4AC06]/70 text-[#F4AC06] shadow-[0_0_10px_rgba(244,172,6,0.2)]'
+                                    : 'bg-[#03071E] border border-white/15 text-slate-200'
                                 }`}
                               >
                                 {member.initials}
                               </div>
-                              <div>
-                                <h4 className="text-sm font-display font-bold text-white">
+                              <div className="min-w-0">
+                                <h4 className="text-base font-display font-bold text-white tracking-tight truncate group-hover:text-[#FFBA08] transition-colors">
                                   {member.name}
                                 </h4>
-                                <div className="text-[10px] font-mono text-slate-400">
+                                <div className="text-xs font-sans text-slate-400 mt-0.5 truncate">
                                   {member.designation}
                                 </div>
                               </div>
@@ -418,32 +446,32 @@ export function StatsSection() {
 
                             {/* Badge */}
                             {member.isClubLead && (
-                              <span className="px-2 py-0.5 rounded bg-[#FFEFC4]/20 text-[#FFEFC4] border border-[#FFEFC4]/40 text-[9px] font-mono font-bold uppercase tracking-wider">
+                              <span className="px-2 py-0.5 rounded-full bg-[#FFBA08]/15 text-[#FFBA08] border border-[#FFBA08]/40 text-[9px] font-sans font-bold uppercase tracking-wider flex-shrink-0 shadow-[0_0_8px_rgba(255,186,8,0.15)]">
                                 CLUB LEAD
                               </span>
                             )}
                             {member.isTeamLead && (
-                              <span className="px-2 py-0.5 rounded bg-[#086288]/25 text-[#97D7FF] border border-[#97D7FF]/50 text-[9px] font-mono font-bold uppercase tracking-wider">
+                              <span className="px-2 py-0.5 rounded-full bg-[#F4AC06]/15 text-[#F4AC06] border border-[#F4AC06]/40 text-[9px] font-sans font-bold uppercase tracking-wider flex-shrink-0 shadow-[0_0_8px_rgba(244,172,6,0.15)]">
                                 TEAM LEAD
                               </span>
                             )}
                             {!member.isClubLead && !member.isTeamLead && member.teams.includes('General Club Member') && (
-                              <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 text-[9px] font-mono uppercase tracking-wider">
+                              <span className="px-2 py-0.5 rounded-full bg-slate-800/80 text-slate-300 border border-slate-700 text-[9px] font-sans uppercase tracking-wider flex-shrink-0">
                                 GENERAL
                               </span>
                             )}
                           </div>
 
                           {/* Associated Teams Tags */}
-                          <div className="space-y-1 pt-2 border-t border-white/5">
-                            <div className="text-[10px] font-mono text-slate-500 uppercase">
+                          <div className="space-y-1.5 pt-3 border-t border-white/5">
+                            <div className="text-[10px] font-sans text-slate-400 font-medium uppercase tracking-wider">
                               Assigned Teams:
                             </div>
-                            <div className="flex flex-wrap gap-1">
+                            <div className="flex flex-wrap gap-1.5">
                               {member.teams.map((t, idx) => (
                                 <span
                                   key={idx}
-                                  className="px-2 py-0.5 rounded bg-cyber-surface border border-white/10 text-[10px] font-mono text-slate-300"
+                                  className="px-2 py-0.5 rounded-md bg-[#03071E] border border-white/10 text-[11px] font-sans text-slate-300 hover:border-[#F4AC06]/40 transition-colors"
                                 >
                                   {t}
                                 </span>
@@ -452,35 +480,35 @@ export function StatsSection() {
                           </div>
                         </div>
 
-                        <div className="mt-3 pt-2 border-t border-white/5 flex items-center justify-between text-[9px] font-mono text-slate-500">
-                          <span>HUMORPHIC LAB</span>
-                          <span className="text-emerald-400 flex items-center gap-1">
-                            <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                        <div className="mt-4 pt-2.5 border-t border-white/5 flex items-center justify-between text-[10px] font-sans text-slate-500">
+                          <span className="font-display tracking-wider text-slate-400">HUMORPHIC LAB</span>
+                          <span className="text-[#F4AC06] flex items-center gap-1.5 font-medium">
+                            <span className="h-1.5 w-1.5 rounded-full bg-[#F4AC06] animate-pulse" />
                             ACTIVE
                           </span>
                         </div>
-                      </Card>
+                      </div>
                     ))}
                   </div>
 
                   {filteredMembers.length === 0 && (
-                    <div className="p-8 text-center text-xs font-mono text-slate-400 bg-cyber-card/40 rounded-xl border border-cyber-border">
+                    <div className="p-8 text-center text-xs font-sans text-slate-400 bg-[#03071E]/90 rounded-xl border border-white/10">
                       No club members matched the filter or search query.
                     </div>
                   )}
 
                   {/* Summary Footer */}
-                  <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl border border-cyber-border bg-cyber-card/40 text-xs font-mono text-slate-400">
-                    <div>
-                      DIRECTORY TOTAL: <strong className="text-white">{TOTAL_UNIQUE_MEMBERS} UNIQUE MEMBERS</strong>
+                  <div className="flex flex-wrap items-center justify-between gap-3 p-4 rounded-xl border border-[#F4AC06]/20 bg-[#03071E]/90 text-xs font-sans text-slate-400 shadow-sm">
+                    <div className="font-display tracking-wide">
+                      DIRECTORY TOTAL: <strong className="text-[#FFBA08] font-bold">{TOTAL_UNIQUE_MEMBERS} UNIQUE MEMBERS</strong>
                     </div>
-                    <div className="flex items-center gap-4 text-[11px]">
-                      <span className="text-emerald-400 flex items-center gap-1">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
+                    <div className="flex items-center gap-4 text-[11px] font-sans">
+                      <span className="text-[#F4AC06] flex items-center gap-1.5 font-medium">
+                        <CheckCircle2 className="h-3.5 w-3.5 text-[#F4AC06]" />
                         NO DUPLICATE MEMBERS
                       </span>
-                      <span>•</span>
-                      <span>ALL 18 VERIFIED</span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-slate-300">ALL 18 VERIFIED</span>
                     </div>
                   </div>
                 </div>
@@ -490,18 +518,21 @@ export function StatsSection() {
               {teamSubView === 'teams' && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {TEAMS_DATA.map((team) => (
-                    <Card
+                    <div
                       key={team.id}
-                      glow={team.isLeadAssigned ? 'orange' : 'none'}
-                      className="p-6 flex flex-col justify-between border-cyber-border/80 bg-cyber-card/80 space-y-4"
+                      className="relative rounded-2xl border border-[#F4AC06]/20 bg-gradient-to-b from-[#03071E] via-[#04081f] to-[#03071E] p-6 flex flex-col justify-between tm-card-glow hover:border-[#FFBA08]/50 transition-all duration-300 space-y-5 group"
                     >
+                      {/* Corner robotics accents */}
+                      <div className="absolute top-0 left-0 w-2.5 h-2.5 border-t border-l border-[#FFBA08]/30 rounded-tl-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+                      <div className="absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r border-[#FFBA08]/30 rounded-br-sm pointer-events-none group-hover:border-[#FFBA08] transition-colors" />
+
                       <div>
                         {/* Team Header */}
-                        <div className="flex items-start justify-between gap-2 mb-2">
-                          <h4 className="text-base font-display font-bold text-white">
+                        <div className="flex items-start justify-between gap-2 mb-3">
+                          <h4 className="text-lg font-display font-bold text-white tracking-tight group-hover:text-[#FFBA08] transition-colors">
                             {team.name}
                           </h4>
-                          <span className="text-[10px] font-mono bg-cyber-surface px-2 py-0.5 rounded border border-white/10 text-slate-400 flex-shrink-0">
+                          <span className="text-xs font-sans bg-[#03071E] px-2.5 py-0.5 rounded-full border border-[#F4AC06]/30 text-[#FFBA08] flex-shrink-0 font-medium">
                             {team.memberNames.length} Members
                           </span>
                         </div>
@@ -509,12 +540,12 @@ export function StatsSection() {
                         {/* Team Lead Indicator */}
                         <div className="mb-4">
                           {team.isLeadAssigned ? (
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-[#086288]/20 border border-[#97D7FF]/50 text-xs font-mono text-[#FFEFC4]">
-                              <UserCheck className="h-3.5 w-3.5 text-[#97D7FF]" />
-                              <span>TEAM LEAD: <strong className="text-white">{team.lead}</strong></span>
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#6A040F]/30 border border-[#F4AC06]/40 text-xs font-sans text-[#FFBA08] shadow-[0_0_10px_rgba(244,172,6,0.15)]">
+                              <UserCheck className="h-4 w-4 text-[#F4AC06]" />
+                              <span>TEAM LEAD: <strong className="text-white font-display font-semibold">{team.lead}</strong></span>
                             </div>
                           ) : (
-                            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-slate-800/80 border border-slate-700 text-xs font-mono text-slate-400">
+                            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-800/50 border border-slate-700/60 text-xs font-sans text-slate-400">
                               <span className="h-1.5 w-1.5 rounded-full bg-slate-500" />
                               <span>TEAM LEAD: <strong className="text-slate-300">Lead Not Assigned</strong></span>
                             </div>
@@ -522,8 +553,8 @@ export function StatsSection() {
                         </div>
 
                         {/* Team Members List */}
-                        <div className="space-y-1.5 mb-4">
-                          <div className="text-[11px] font-mono text-slate-400 uppercase tracking-wider">
+                        <div className="space-y-2 mb-4">
+                          <div className="text-xs font-sans text-slate-400 uppercase tracking-wider font-semibold">
                             Team Members:
                           </div>
                           <div className="flex flex-wrap gap-1.5">
@@ -532,10 +563,10 @@ export function StatsSection() {
                               return (
                                 <span
                                   key={idx}
-                                  className={`px-2.5 py-1 rounded text-xs font-mono transition-all ${
+                                  className={`px-2.5 py-1 rounded-lg text-xs font-sans transition-all ${
                                     isThisLead
-                                      ? 'bg-[#086288]/30 border border-[#97D7FF] text-[#FFEFC4] font-semibold shadow-glow-sky'
-                                      : 'bg-cyber-surface border border-cyber-border text-slate-200'
+                                      ? 'bg-[#6A040F]/40 border border-[#FFBA08] text-[#FFBA08] font-semibold shadow-[0_0_10px_rgba(255,186,8,0.2)]'
+                                      : 'bg-[#03071E] border border-white/10 text-slate-200 hover:border-[#F4AC06]/40'
                                   }`}
                                 >
                                   {name}
@@ -548,7 +579,7 @@ export function StatsSection() {
 
                         {/* Responsibilities */}
                         <div className="space-y-2 pt-3 border-t border-white/10">
-                          <div className="text-[11px] font-mono text-[#97D7FF] uppercase tracking-wider font-semibold">
+                          <div className="text-xs font-display text-[#FFBA08] uppercase tracking-wider font-bold">
                             Core Responsibilities:
                           </div>
                           <ul className="space-y-1.5">
@@ -557,7 +588,7 @@ export function StatsSection() {
                                 key={idx}
                                 className="flex items-start gap-2 text-xs text-slate-300 font-sans leading-relaxed"
                               >
-                                <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0 mt-0.5" />
+                                <CheckCircle2 className="h-3.5 w-3.5 text-[#F4AC06] flex-shrink-0 mt-0.5" />
                                 <span>{resp}</span>
                               </li>
                             ))}
@@ -565,11 +596,14 @@ export function StatsSection() {
                         </div>
                       </div>
 
-                      <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-slate-500">
-                        <span>HUMORPHIC LAB BAY</span>
-                        <span className="text-emerald-400">ACTIVE DIVISION</span>
+                      <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-sans text-slate-500">
+                        <span className="font-display tracking-wider text-slate-400">HUMORPHIC LAB BAY</span>
+                        <span className="text-[#F4AC06] font-medium flex items-center gap-1.5">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#F4AC06]" />
+                          ACTIVE DIVISION
+                        </span>
                       </div>
-                    </Card>
+                    </div>
                   ))}
                 </div>
               )}

@@ -2,9 +2,6 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Bot, Terminal, Shield, Cpu, Activity, ExternalLink } from 'lucide-react';
-import { SITE_CONFIG } from '@/config/site';
-import { Button } from '@/components/ui/Button';
 
 export interface FooterProps {
   onOpenNeuralLink?: () => void;
@@ -12,148 +9,177 @@ export interface FooterProps {
 
 export const Footer = ({ onOpenNeuralLink }: FooterProps) => {
   return (
-    <footer className="relative border-t border-cyber-border/80 bg-cyber-bg/95 pt-16 pb-12 overflow-hidden">
-      {/* Background ambient pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(#1e293b_1px,transparent_1px)] [background-size:24px_24px] opacity-20 pointer-events-none" />
+    <footer className="relative border-t border-[#4E4F56] bg-[#393A3F] pt-12 pb-10 overflow-hidden transition-colors duration-300">
+      {/* Background ambient micro-grid pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(#ffffff_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.04] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Top Banner Box */}
-        <div className="rounded-2xl border border-cyber-border bg-cyber-card/70 p-8 sm:p-12 mb-16 backdrop-blur-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#086288]/20 rounded-full blur-3xl pointer-events-none" />
+        {/* =========================================================================
+            1. HORIZONTAL THREE-SECTION ROW (DESKTOP: SIDE-BY-SIDE IN ONE ROW)
+            ========================================================================= */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-10 lg:gap-16 max-w-3xl mx-auto">
           
-          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-8">
-            <div className="space-y-3 max-w-2xl">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#97D7FF] tracking-wider">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#97D7FF] animate-pulse" />
-                HUMORPHIC LAB ARCHITECTURE // [ONLINE]
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-display font-extrabold text-white tracking-wide">
-                Pioneering Physical Intelligence.
-              </h2>
-              <p className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                Where mathematical models manifest into physical motion. Transforming high-frequency Whole-Body Control equations into sentient cybernetic motion.
-              </p>
-            </div>
+          {/* Section 1: About Us */}
+          <div className="flex flex-col items-center sm:items-start space-y-3">
+            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-white flex items-center gap-2">
+              <span className="footer-heading-dot h-1.5 w-1.5 rounded-full bg-[#97D7FF] shadow-[0_0_8px_rgba(151,215,255,0.8)]" />
+              About Us
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/about-us"
+                  className="footer-nav-link font-sans text-sm text-[#E2E8F0] hover:text-[#97D7FF] transition-colors duration-200 inline-flex items-center gap-1.5 group font-medium"
+                >
+                  <span className="group-hover:translate-x-0.5 transition-transform">About Us</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
 
-            <div className="flex flex-wrap items-center gap-4">
-              <Button
-                variant="primary"
-                size="lg"
-                onClick={onOpenNeuralLink}
-                leftIcon={<Activity className="h-5 w-5" />}
+          {/* Section 2: Services */}
+          <div className="flex flex-col items-center sm:items-start space-y-3">
+            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-white flex items-center gap-2">
+              <span className="footer-heading-dot h-1.5 w-1.5 rounded-full bg-[#97D7FF] shadow-[0_0_8px_rgba(151,215,255,0.8)]" />
+              Services
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="#application"
+                  className="footer-nav-link font-sans text-sm text-[#E2E8F0] hover:text-[#97D7FF] transition-colors duration-200 inline-flex items-center gap-1.5 group font-medium"
+                >
+                  <span className="group-hover:translate-x-0.5 transition-transform">Application</span>
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#features"
+                  className="footer-nav-link font-sans text-sm text-[#E2E8F0] hover:text-[#97D7FF] transition-colors duration-200 inline-flex items-center gap-1.5 group font-medium"
+                >
+                  <span className="group-hover:translate-x-0.5 transition-transform">Robot Features</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Section 3: Contact Us */}
+          <div className="flex flex-col items-center sm:items-start space-y-3">
+            <h3 className="font-display font-bold text-xs uppercase tracking-widest text-white flex items-center gap-2">
+              <span className="footer-heading-dot h-1.5 w-1.5 rounded-full bg-[#97D7FF] shadow-[0_0_8px_rgba(151,215,255,0.8)]" />
+              Contact Us
+            </h3>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="#contact"
+                  className="footer-nav-link font-sans text-sm text-[#E2E8F0] hover:text-[#97D7FF] transition-colors duration-200 inline-flex items-center gap-1.5 group font-medium"
+                >
+                  <span className="group-hover:translate-x-0.5 transition-transform">Contact Us</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* =========================================================================
+            2. SUBTLE DIVIDER
+            ========================================================================= */}
+        <div className="footer-divider w-full max-w-3xl mx-auto my-8 border-t border-white/15 transition-colors duration-300" />
+
+        {/* =========================================================================
+            3. SOCIAL MEDIA ROW (CENTERED, HORIZONTALLY ALIGNED WITH ACTUAL LINKS)
+            ========================================================================= */}
+        <div className="flex flex-col items-center justify-center space-y-4">
+          <div className="flex items-center justify-center gap-5 sm:gap-6">
+            
+            {/* Instagram */}
+            <a
+              href="https://www.instagram.com/humorphic.labs?dlrf=ZW04dnM0cHFpZXJo"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="footer-social-icon p-2 rounded-xl border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/[0.08] hover:scale-110 active:scale-95 transition-all duration-200 inline-flex items-center justify-center shadow-sm"
+            >
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                INITIATE NEURAL LINK
-              </Button>
-            </div>
-          </div>
-        </div>
+                <defs>
+                  <radialGradient
+                    id="instagram-brand-gradient"
+                    cx="30%"
+                    cy="107%"
+                    r="130%"
+                    fx="30%"
+                    fy="107%"
+                  >
+                    <stop offset="0%" stopColor="#fdf497" />
+                    <stop offset="5%" stopColor="#fdf497" />
+                    <stop offset="45%" stopColor="#fd5949" />
+                    <stop offset="60%" stopColor="#d6249f" />
+                    <stop offset="90%" stopColor="#285AEB" />
+                  </radialGradient>
+                </defs>
+                <rect width="24" height="24" rx="5.5" fill="url(#instagram-brand-gradient)" />
+                <rect x="5.5" y="5.5" width="13" height="13" rx="3.5" stroke="#FFFFFF" strokeWidth="1.6" fill="none" />
+                <circle cx="12" cy="12" r="3.2" stroke="#FFFFFF" strokeWidth="1.6" fill="none" />
+                <circle cx="15.8" cy="8.2" r="0.9" fill="#FFFFFF" />
+              </svg>
+            </a>
 
-        {/* Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 pb-12 border-b border-cyber-border/60">
-          
-          {/* Col 1: Brand & Coordinates */}
-          <div className="space-y-4 md:col-span-1">
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-cyber-card border border-[#97D7FF]/60 shadow-glow-sky">
-                <Bot className="h-5 w-5 text-[#97D7FF]" />
-              </div>
-              <span className="font-display font-extrabold text-base tracking-wider text-white">
-                HUMORPHIC<span className="text-[#97D7FF]">LAB</span>
-              </span>
-            </div>
-            <p className="text-xs text-slate-400 font-mono leading-relaxed">
-              Autonomous robotics research bay focusing on 32-DOF biomorphic kinematics, real-time spatial vision, and low-latency actuation.
-            </p>
-            <div className="space-y-1 text-[11px] font-mono text-slate-500">
-              <div>COORD: {SITE_CONFIG.coords}</div>
-              <div>TIER: {SITE_CONFIG.tier}</div>
-              <div>SYSTEM: {SITE_CONFIG.version}</div>
-            </div>
-          </div>
+            {/* LinkedIn */}
+            <a
+              href="https://www.linkedin.com/company/humorphic-labs/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="footer-social-icon p-2 rounded-xl border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/[0.08] hover:scale-110 active:scale-95 transition-all duration-200 inline-flex items-center justify-center shadow-sm"
+            >
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect width="24" height="24" rx="4.5" fill="#0A66C2" />
+                <path
+                  d="M7.119 9.297h-2.74v8.837h2.74V9.297zM5.748 5.867c-.878 0-1.588.71-1.588 1.587 0 .878.71 1.588 1.588 1.588.877 0 1.587-.71 1.587-1.588 0-.877-.71-1.587-1.587-1.587zm13.385 7.643c0-2.887-1.54-4.229-3.593-4.229-1.656 0-2.398.912-2.812 1.55v-1.334H9.988c.036.773 0 8.837 0 8.837h2.74v-4.935c0-.264.019-.527.097-.716.213-.528.699-1.074 1.514-1.074 1.067 0 1.494.813 1.494 2.004v5.721h2.74v-5.28c.001-.226.001-.453.001-.453z"
+                  fill="#FFFFFF"
+                />
+              </svg>
+            </a>
 
-          {/* Col 2: Architecture */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-200">
-              Robotics Subsystems
-            </h3>
-            <ul className="space-y-2 text-xs font-mono text-slate-400">
-              <li><a href="/#our-work" className="hover:text-[#97D7FF] transition-colors text-[#FFEFC4] flex items-center gap-1.5"><span className="h-1.5 w-1.5 rounded-full bg-[#97D7FF]"></span>Our Work Gallery</a></li>
-              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Vision Sensor Bay</a></li>
-              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Core Computer & IMU</a></li>
-              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">7-DOF Manipulators</a></li>
-              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Bipedal Stride System</a></li>
-              <li><a href="/#anatomy" className="hover:text-[#97D7FF] transition-colors">Harmonic BLDC Servos</a></li>
-            </ul>
-          </div>
+            {/* YouTube */}
+            <a
+              href="https://youtube.com/@humorphiclabs?si=ogTkyoUYuXuZNySE"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="YouTube"
+              className="footer-social-icon p-2 rounded-xl border border-black/10 dark:border-white/20 bg-white/70 dark:bg-white/[0.08] hover:scale-110 active:scale-95 transition-all duration-200 inline-flex items-center justify-center shadow-sm"
+            >
+              <svg
+                className="h-6 w-6"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"
+                  fill="#FF0000"
+                />
+                <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#FFFFFF" />
+              </svg>
+            </a>
 
-          {/* Col 3: 3D Platform */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-200">
-              3D Platform & API
-            </h3>
-            <ul className="space-y-2 text-xs font-mono text-slate-400">
-              <li><Link href="/models" className="hover:text-[#97D7FF] transition-colors">3D Model Explorer</Link></li>
-              <li><Link href="/dashboard" className="hover:text-[#97D7FF] transition-colors">Telemetry Dashboard</Link></li>
-              <li>
-                <a
-                  href="http://localhost:8000/api/docs/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#97D7FF] transition-colors inline-flex items-center gap-1"
-                >
-                  <span>OpenAPI Swagger UI</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="http://localhost:8000/api/redoc/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#97D7FF] transition-colors inline-flex items-center gap-1"
-                >
-                  <span>ReDoc Specification</span>
-                  <ExternalLink className="h-3 w-3" />
-                </a>
-              </li>
-            </ul>
           </div>
 
-          {/* Col 4: Cybernetics Stack */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-mono font-bold uppercase tracking-wider text-slate-200">
-              Embedded Stack
-            </h3>
-            <div className="flex flex-wrap gap-1.5">
-              {['CAN-FD', 'RTOS', 'PyTorch', 'SolidWorks', 'ESP32', 'C++', 'Three.js', 'Next.js', 'PostgreSQL'].map((t) => (
-                <span
-                  key={t}
-                  className="px-2 py-0.5 rounded bg-cyber-card border border-white/10 text-[10px] font-mono text-slate-400"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-            <div className="pt-2 text-xs text-slate-500 font-mono">
-              Deterministic 1,000 Hz balance loops running onboard.
-            </div>
-          </div>
-
-        </div>
-
-        {/* Bottom Meta */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-slate-500">
-          <div>
+          <div className="footer-copyright text-[11px] font-mono text-[#CBD5E1] text-center tracking-wider transition-colors duration-200">
             HUMORPHIC LABS © 2026 • ALL RIGHTS RESERVED
-          </div>
-          <div className="flex items-center gap-6">
-            <span className="text-emerald-400 flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              ALL SYSTEMS OPERATIONAL
-            </span>
-            <span className="text-slate-600">|</span>
-            <span>WCAG 2.1 AA COMPLIANT</span>
           </div>
         </div>
 

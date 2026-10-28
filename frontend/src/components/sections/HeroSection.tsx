@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { SITE_CONFIG } from '@/config/site';
 import { Button } from '@/components/ui/Button';
 import { Bot, Users, Activity, Compass, Cpu, ChevronDown } from 'lucide-react';
+import { HeroRobot } from '@/components/3d/HeroRobot';
 
 export interface HeroSectionProps {
   onExploreRobot?: () => void;
@@ -58,6 +59,19 @@ export function HeroSection({
         {/* Ambient sci-fi radial grid lines */}
         <div className="absolute inset-0 bg-[radial-gradient(#1e4e6d_1px,transparent_1px)] [background-size:28px_28px] opacity-25 pointer-events-none" />
         <div className="absolute inset-0 bg-gradient-to-b from-cyber-bg/40 via-transparent to-cyber-bg pointer-events-none" />
+      </div>
+
+      {/* =========================================================================
+          PRIMARY BACKGROUND ROBOT: LARGE ANIMATED ROBOT BEHIND HERO TEXT
+          ========================================================================= */}
+      <div className="absolute inset-0 w-full h-full z-[1] flex items-center justify-center pointer-events-none overflow-hidden">
+        <div className="relative w-full max-w-6xl h-[85vh] sm:h-[94vh] flex items-center justify-center pointer-events-none hero-robot-chamber">
+          <HeroRobot
+            opacity={0.76}
+            startFrame={60}
+            className="w-full h-full"
+          />
+        </div>
       </div>
 
       {/* =========================================================================

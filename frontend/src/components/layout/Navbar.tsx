@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { Menu, X, Bot, Box, User, LogOut, ShieldCheck } from 'lucide-react';
 import { SITE_CONFIG } from '@/config/site';
+import { ThemeToggle } from '@/components/layout/ThemeToggle';
 
 export const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -64,8 +65,8 @@ export const Navbar = () => {
             })}
           </nav>
 
-          {/* Status Pill & Auth Actions */}
-          <div className="hidden sm:flex items-center gap-4">
+          {/* Status Pill & Auth Actions & Theme Switcher */}
+          <div className="hidden sm:flex items-center gap-3 lg:gap-4">
             <Badge variant="active" pulse>
               {SITE_CONFIG.status}
             </Badge>
@@ -107,10 +108,14 @@ export const Navbar = () => {
                 </Link>
               </div>
             )}
+
+            {/* Stylish Three-Dot Theme Menu (⋮) */}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Right Bar: Theme Toggle + Mobile Menu Button */}
           <div className="flex sm:hidden items-center gap-2">
+            <ThemeToggle />
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 transition-colors"

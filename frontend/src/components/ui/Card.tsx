@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
   hoverEffect?: boolean;
-  glow?: 'orange' | 'gold' | 'cyan' | 'none';
+  glow?: 'primary' | 'orange' | 'gold' | 'cyan' | 'none';
 }
 
 export const Card = ({
@@ -14,6 +14,7 @@ export const Card = ({
   ...props
 }: CardProps) => {
   const glowStyles = {
+    primary: 'hover:border-[#97D7FF]/70 hover:shadow-glow-sky',
     orange: 'hover:border-[#97D7FF]/70 hover:shadow-glow-sky',
     gold: 'hover:border-[#FFEFC4]/70 hover:shadow-glow-cream',
     cyan: 'hover:border-[#4D8DBA]/80 hover:shadow-glow-steel',
