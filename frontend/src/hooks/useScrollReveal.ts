@@ -2,9 +2,9 @@
 
 import { useEffect } from 'react';
 
-export function useScrollReveal() {
+export function useScrollReveal(enabled: boolean = true) {
   useEffect(() => {
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined' || !enabled) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -29,5 +29,5 @@ export function useScrollReveal() {
     return () => {
       observer.disconnect();
     };
-  }, []);
+  }, [enabled]);
 }

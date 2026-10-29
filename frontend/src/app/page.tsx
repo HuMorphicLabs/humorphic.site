@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { GradientAsciiIntro } from '@/components/intro/GradientAsciiIntro';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { FeaturesSection } from '@/components/sections/FeaturesSection';
@@ -15,12 +15,27 @@ import { NeuralLinkModal } from '@/components/sections/NeuralLinkModal';
 import { useScrollReveal } from '@/hooks/useScrollReveal';
 
 export default function HomePage() {
+  // 1. An isLoading state (initialized to true) controls the view
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [selectedPart, setSelectedPart] = useState<string>('head');
   const [teamModalOpen, setTeamModalOpen] = useState(false);
   const [neuralLinkModalOpen, setNeuralLinkModalOpen] = useState(false);
 
-  // Initialize lightweight IntersectionObserver scroll reveals
-  useScrollReveal();
+  // 3. Fallback safety timer: ensures isLoading turns false after animation finishes (~3.35s)
+  useEffect(() => {
+    try {
+      sessionStorage.removeItem('humorphic_intro_seen_v1');
+    } catch {}
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  // Initialize lightweight IntersectionObserver scroll reveals when main content mounts
+  useScrollReveal(!isLoading);
 
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
@@ -29,12 +44,19 @@ export default function HomePage() {
     }
   };
 
-  return (
-    <div className="relative w-full overflow-hidden bg-cyber-bg">
-      
-      {/* OPENING INTRO: FUTURISTIC GRADIENT ASCII EXPERIENCE */}
-      <GradientAsciiIntro />
+  // 2. While isLoading is true, display ONLY the intro animation screen
+  if (isLoading) {
+    return (
+      <div className="fixed inset-0 z-[9999] bg-[#03071E] overflow-hidden">
+        <GradientAsciiIntro onComplete={() => setIsLoading(false)} />
+      </div>
+    );
+  }
 
+  // 4. Render the main website content only when isLoading becomes false, ensuring the main content never flashes before the animation
+  return (
+    <div className="relative w-full overflow-hidden bg-cyber-bg animate-in fade-in duration-700">
+      
       {/* SECTION 1: HERO (WITH PRIMARY ANIMATED ROBOT IN BACKGROUND BEHIND TEXT) */}
       <HeroSection
         onExploreRobot={() => scrollToSection('features')}

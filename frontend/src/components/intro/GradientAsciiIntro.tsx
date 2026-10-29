@@ -60,7 +60,11 @@ const ASCII_RAMP = [' ', '.', '·', ':', '+', '*', 'x', '0', '8', '#', '%', '@']
 
 const INTRO_STORAGE_KEY = 'humorphic_intro_seen_v1';
 
-export function GradientAsciiIntro() {
+export interface GradientAsciiIntroProps {
+  onComplete?: () => void;
+}
+
+export function GradientAsciiIntro({ onComplete }: GradientAsciiIntroProps = {}) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const animFrameIdRef = useRef<number | null>(null);
@@ -80,6 +84,13 @@ export function GradientAsciiIntro() {
   const [isDone, setIsDone] = useState(false);
   const [progress, setProgress] = useState(0);
 
+  // Notify parent component when intro finishes
+  useEffect(() => {
+    if (isDone) {
+      onComplete?.();
+    }
+  }, [isDone, onComplete]);
+
   // Check if intro should play (first time opening URL, or forced via ?intro=1 / ?replay=1)
   useEffect(() => {
     setIsMounted(true);
@@ -88,7 +99,7 @@ export function GradientAsciiIntro() {
       const forceReplay = search.includes('intro') || search.includes('replay');
       const alreadySeen = sessionStorage.getItem(INTRO_STORAGE_KEY) === 'true';
 
-      if (alreadySeen && !forceReplay) {
+      if (false) {
         setIsDone(true);
         return;
       }
@@ -100,7 +111,7 @@ export function GradientAsciiIntro() {
 
     // Save flag so internal navigation or section scrolls don't re-trigger it
     try {
-      sessionStorage.setItem(INTRO_STORAGE_KEY, 'true');
+      // Session storage disabled so intro plays every time
     } catch {
       // Ignore
     }
@@ -416,7 +427,7 @@ export function GradientAsciiIntro() {
   }, [shouldShow, isDone, handleSkip]);
 
   // If server-side, never requested, or completed, don't render to keep DOM clean
-  if (!isMounted || !shouldShow || isDone) {
+  if (isDone) {
     return null;
   }
 
