@@ -23,6 +23,7 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { formatDate } from '@/lib/utils';
+import { formatApiErrorMessage } from '@/lib/api';
 
 export default function DashboardPage() {
   const { user, isAuthenticated, isLoading: authLoading } = useAuth();
@@ -123,7 +124,7 @@ export default function DashboardPage() {
       setToast({
         type: 'error',
         title: 'Upload Failed',
-        message: err.response?.data?.message || 'Server rejected 3D model upload.',
+        message: formatApiErrorMessage(err, 'Server rejected 3D model upload.'),
       });
     } finally {
       setUploadLoading(false);
