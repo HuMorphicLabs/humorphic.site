@@ -7,6 +7,9 @@ export const authService = {
     const { data } = await apiClient.post<AuthResponse>('/auth/register/', payload);
     authStorage.setTokens(data.access, data.refresh);
     authStorage.setUser(data.user);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('humorphic-auth-changed'));
+    }
     return data;
   },
 
@@ -14,6 +17,9 @@ export const authService = {
     const { data } = await apiClient.post<AuthResponse>('/auth/login/', payload);
     authStorage.setTokens(data.access, data.refresh);
     authStorage.setUser(data.user);
+    if (typeof window !== 'undefined') {
+      window.dispatchEvent(new Event('humorphic-auth-changed'));
+    }
     return data;
   },
 
@@ -27,6 +33,9 @@ export const authService = {
       // Ignore network errors on logout
     } finally {
       authStorage.clearTokens();
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('humorphic-auth-changed'));
+      }
     }
   },
 

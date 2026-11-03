@@ -1,7 +1,13 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { authStorage } from './auth';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+const getApiBaseUrl = (): string => {
+  const envUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+  const cleanUrl = envUrl.replace(/\/+$/, '');
+  return cleanUrl.endsWith('/api/v1') ? cleanUrl : `${cleanUrl}/api/v1`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
 
 export const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -105,3 +111,63 @@ apiClient.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+export function formatApiErrorMessage(err: any, defaultMsg: string = 'An unexpected error occurred'): string {
+  if (!err) return defaultMsg;
+
+  if (err.code === 'ERR_NETWORK' || err.message === 'Network Error') {
+    return 'Cannot connect to backend server. Make sure Django is running on http://localhost:8000';
+  }
+
+  const responseData = err.response?.data;
+  if (!responseData) {
+    if (err.response?.status === 401) {
+      return 'Invalid credentials. Please verify your username and password.';
+    }
+    if (err.response?.status === 404) {
+      return 'The requested API endpoint was not found (404).';
+    }
+    if (err.response?.status === 500) {
+      return 'Backend internal server error (500). Please check server logs.';
+    }
+    return err.message || defaultMsg;
+  }
+
+  // Handle standardized backend custom exception handler details
+  if (responseData.details) {
+    if (typeof responseData.details === 'object' && !Array.isArray(responseData.details)) {
+      const messages: string[] = [];
+      for (const [key, value] of Object.entries(responseData.details)) {
+        const valText = Array.isArray(value) ? value.join(' ') : String(value);
+        messages.push(`${key}: ${valText}`);
+      }
+      if (messages.length > 0) return messages.join(' | ');
+    } else if (Array.isArray(responseData.details) && responseData.details.length > 0) {
+      return responseData.details.join(' ');
+    } else if (typeof responseData.details === 'string') {
+      return responseData.details;
+    }
+  }
+
+  // If top-level message is present and not the generic DRF wrapper message
+  if (responseData.message && responseData.message !== 'An error occurred during request processing.') {
+    return responseData.message;
+  }
+
+  if (responseData.detail) {
+    return typeof responseData.detail === 'string' ? responseData.detail : JSON.stringify(responseData.detail);
+  }
+
+  // Check if responseData is a direct field map
+  if (typeof responseData === 'object' && !Array.isArray(responseData)) {
+    const messages: string[] = [];
+    for (const [key, value] of Object.entries(responseData)) {
+      if (['status', 'error_type', 'status_code'].includes(key)) continue;
+      const valText = Array.isArray(value) ? value.join(' ') : String(value);
+      messages.push(`${key}: ${valText}`);
+    }
+    if (messages.length > 0) return messages.join(' | ');
+  }
+
+  return responseData.message || defaultMsg;
+}

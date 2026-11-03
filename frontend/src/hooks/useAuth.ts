@@ -44,9 +44,17 @@ export function useAuth() {
       setIsAuthenticated(false);
     };
 
+    const handleAuthChanged = () => {
+      refreshUser();
+    };
+
     window.addEventListener('humorphic-auth-expired', handleAuthExpired);
+    window.addEventListener('humorphic-auth-changed', handleAuthChanged);
+    window.addEventListener('storage', handleAuthChanged);
     return () => {
       window.removeEventListener('humorphic-auth-expired', handleAuthExpired);
+      window.removeEventListener('humorphic-auth-changed', handleAuthChanged);
+      window.removeEventListener('storage', handleAuthChanged);
     };
   }, [refreshUser]);
 

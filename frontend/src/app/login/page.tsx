@@ -7,11 +7,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { authService } from '@/services/auth.service';
+import { formatApiErrorMessage } from '@/lib/api';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Toast } from '@/components/ui/Toast';
-import { Bot, Lock, User, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Bot, Lock, User, ArrowRight } from 'lucide-react';
 
 const loginSchema = z.object({
   username: z.string().min(1, 'Username or email is required'),
@@ -29,6 +30,7 @@ export default function LoginPage() {
     register,
     handleSubmit,
     setValue,
+    setError,
     formState: { errors },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -39,12 +41,23 @@ export default function LoginPage() {
     setServerError(null);
     try {
       await authService.login(values);
-      router.push('/dashboard');
+      router.push('/');
     } catch (err: any) {
-      setServerError(
-        err.response?.data?.message ||
-          'Invalid credentials provided. Please check your username and password.'
+      const errorMsg = formatApiErrorMessage(
+        err,
+        'Invalid credentials provided. Please check your username/email and password.'
       );
+      setServerError(errorMsg);
+
+      if (err.response?.data?.details && typeof err.response.data.details === 'object') {
+        const details = err.response.data.details;
+        for (const [field, messages] of Object.entries(details)) {
+          const fieldMsg = Array.isArray(messages) ? messages[0] : String(messages);
+          if (['username', 'password'].includes(field)) {
+            setError(field as any, { message: fieldMsg });
+          }
+        }
+      }
     } finally {
       setIsLoading(false);
     }

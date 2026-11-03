@@ -7,6 +7,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { authService } from '@/services/auth.service';
+import { formatApiErrorMessage } from '@/lib/api';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -39,6 +40,7 @@ export default function RegisterPage() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<RegisterFormValues>({
     resolver: zodResolver(registerSchema),
@@ -53,12 +55,25 @@ export default function RegisterPage() {
     setServerError(null);
     try {
       await authService.register(values);
-      router.push('/dashboard');
+      router.push('/');
     } catch (err: any) {
-      setServerError(
-        err.response?.data?.message ||
-          'Failed to register account. Please check the values and try again.'
+      const errorMsg = formatApiErrorMessage(
+        err,
+        'Failed to register account. Please check the values and try again.'
       );
+      setServerError(errorMsg);
+
+      if (err.response?.data?.details && typeof err.response.data.details === 'object') {
+        const details = err.response.data.details;
+        for (const [field, messages] of Object.entries(details)) {
+          const fieldMsg = Array.isArray(messages) ? messages[0] : String(messages);
+          if (
+            ['username', 'email', 'password', 'password_confirm', 'first_name', 'last_name', 'role', 'organization'].includes(field)
+          ) {
+            setError(field as any, { message: fieldMsg });
+          }
+        }
+      }
     } finally {
       setIsLoading(false);
     }
@@ -116,11 +131,13 @@ export default function RegisterPage() {
               <Input
                 label="First Name"
                 placeholder="Alex"
+                error={errors.first_name?.message}
                 {...register('first_name')}
               />
               <Input
                 label="Last Name"
                 placeholder="Vance"
+                error={errors.last_name?.message}
                 {...register('last_name')}
               />
             </div>
@@ -145,6 +162,7 @@ export default function RegisterPage() {
                 label="Organization / Lab"
                 placeholder="MIT / Stanford / Humorphic"
                 leftIcon={<Building className="h-4 w-4" />}
+                error={errors.organization?.message}
                 {...register('organization')}
               />
             </div>
